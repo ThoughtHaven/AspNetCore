@@ -15,7 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
-    <PackageReference Include="ThoughtHaven.Core" Version="1.0.0" />
+    <PackageReference Include="ThoughtHaven.Core" Version="0.100.0" />
   </ItemGroup>
 
 </Project>
