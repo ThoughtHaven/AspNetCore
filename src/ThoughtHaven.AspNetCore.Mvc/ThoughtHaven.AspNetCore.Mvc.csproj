@@ -8,6 +8,7 @@
     <Product>Thought Haven AspNetCore Mvc</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A slightly more opinionated approach to AspNetCore MVC with more secure defaults and common best practices.</Description>
+    <Version>0.100.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
