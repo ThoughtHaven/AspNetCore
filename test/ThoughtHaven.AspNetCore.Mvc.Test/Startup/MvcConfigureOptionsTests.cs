@@ -70,248 +70,284 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
         public class MvcProperty
         {
-            [Fact]
-            public void Get_DefaultValue_ConfiguresOptions()
+            public class GetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new MvcOptions();
-
-                configure.Mvc(options);
-
-                Assert.NotNull(options.Filters.Single(
-                    filter => filter is AutoValidateAntiforgeryTokenAttribute));
-                Assert.NotNull(options.Filters.Single(
-                    filter => filter is RequireHttpsAttribute));
-                Assert.True(options.RequireHttpsPermanent);
-            }
-
-            [Fact]
-            public void Set_ToNull_Throws()
-            {
-                Assert.Throws<ArgumentNullException>("value", () =>
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
                 {
-                    new MvcConfigureOptions().Mvc = null;
-                });
+                    var configure = new MvcConfigureOptions();
+                    var options = new MvcOptions();
+
+                    configure.Mvc(options);
+
+                    Assert.NotNull(options.Filters.Single(
+                        filter => filter is AutoValidateAntiforgeryTokenAttribute));
+                    Assert.NotNull(options.Filters.Single(
+                        filter => filter is RequireHttpsAttribute));
+                    Assert.True(options.RequireHttpsPermanent);
+                }
             }
 
-            [Fact]
-            public void Set_SetsValue()
+            public class SetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new Action<MvcOptions>(o => { });
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().Mvc = null;
+                    });
+                }
 
-                configure.Mvc = options;
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<MvcOptions>(o => { });
 
-                Assert.Equal(options, configure.Mvc);
+                    configure.Mvc = options;
+
+                    Assert.Equal(options, configure.Mvc);
+                }
             }
         }
 
         public class JsonProperty
         {
-            [Fact]
-            public void Get_DefaultValue_ConfiguresOptions()
+            public class GetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new MvcJsonOptions();
-
-                configure.Json(options);
-
-                Assert.Equal(Formatting.None, options.SerializerSettings.Formatting);
-                Assert.Equal(NullValueHandling.Ignore,
-                    options.SerializerSettings.NullValueHandling);
-                Assert.True(options.SerializerSettings.ContractResolver is
-                    CamelCasePropertyNamesContractResolver);
-            }
-
-            [Fact]
-            public void Set_ToNull_Throws()
-            {
-                Assert.Throws<ArgumentNullException>("value", () =>
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
                 {
-                    new MvcConfigureOptions().Json = null;
-                });
+                    var configure = new MvcConfigureOptions();
+                    var options = new MvcJsonOptions();
+
+                    configure.Json(options);
+
+                    Assert.Equal(Formatting.None, options.SerializerSettings.Formatting);
+                    Assert.Equal(NullValueHandling.Ignore,
+                        options.SerializerSettings.NullValueHandling);
+                    Assert.True(options.SerializerSettings.ContractResolver is
+                        CamelCasePropertyNamesContractResolver);
+                }
             }
 
-            [Fact]
-            public void Set_SetsValue()
+            public class SetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new Action<MvcJsonOptions>(o => { });
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().Json = null;
+                    });
+                }
 
-                configure.Json = options;
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<MvcJsonOptions>(o => { });
 
-                Assert.Equal(options, configure.Json);
+                    configure.Json = options;
+
+                    Assert.Equal(options, configure.Json);
+                }
             }
         }
 
         public class RazorProperty
         {
-            [Fact]
-            public void Get_DefaultValue_ConfiguresOptions()
+            public class GetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new RazorViewEngineOptions();
-
-                configure.Razor(options);
-
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Areas/{2}/Views/{1}/Partials/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Areas/{2}/Views/Shared/Partials/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Features/{2}/{1}/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Features/{2}/{1}/Partials/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Features/{2}/Shared/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Features/{2}/Shared/Partials/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Features/Shared/{0}.cshtml"));
-                Assert.True(options.AreaViewLocationFormats.Contains(
-                    "/Features/Shared/Partials/{0}.cshtml"));
-
-                Assert.True(options.ViewLocationFormats.Contains(
-                    "/Views/{1}/Partials/{0}.cshtml"));
-                Assert.True(options.ViewLocationFormats.Contains(
-                    "/Views/Shared/Partials/{0}.cshtml"));
-
-                Assert.True(options.ViewLocationFormats.Contains(
-                    "/Features/{1}/{0}.cshtml"));
-                Assert.True(options.ViewLocationFormats.Contains(
-                    "/Features/{1}/Partials/{0}.cshtml"));
-                Assert.True(options.ViewLocationFormats.Contains(
-                    "/Features/Shared/{0}.cshtml"));
-                Assert.True(options.ViewLocationFormats.Contains(
-                    "/Features/Shared/Partials/{0}.cshtml"));
-            }
-
-            [Fact]
-            public void Set_ToNull_Throws()
-            {
-                Assert.Throws<ArgumentNullException>("value", () =>
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
                 {
-                    new MvcConfigureOptions().Razor = null;
-                });
+                    var configure = new MvcConfigureOptions();
+                    var options = new RazorViewEngineOptions();
+
+                    configure.Razor(options);
+
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Areas/{2}/Views/{1}/Partials/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Areas/{2}/Views/Shared/Partials/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Features/{2}/{1}/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Features/{2}/{1}/Partials/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Features/{2}/Shared/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Features/{2}/Shared/Partials/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Features/Shared/{0}.cshtml"));
+                    Assert.True(options.AreaViewLocationFormats.Contains(
+                        "/Features/Shared/Partials/{0}.cshtml"));
+
+                    Assert.True(options.ViewLocationFormats.Contains(
+                        "/Views/{1}/Partials/{0}.cshtml"));
+                    Assert.True(options.ViewLocationFormats.Contains(
+                        "/Views/Shared/Partials/{0}.cshtml"));
+
+                    Assert.True(options.ViewLocationFormats.Contains(
+                        "/Features/{1}/{0}.cshtml"));
+                    Assert.True(options.ViewLocationFormats.Contains(
+                        "/Features/{1}/Partials/{0}.cshtml"));
+                    Assert.True(options.ViewLocationFormats.Contains(
+                        "/Features/Shared/{0}.cshtml"));
+                    Assert.True(options.ViewLocationFormats.Contains(
+                        "/Features/Shared/Partials/{0}.cshtml"));
+                }
             }
 
-            [Fact]
-            public void Set_SetsValue()
+            public class SetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new Action<RazorViewEngineOptions>(o => { });
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().Razor = null;
+                    });
+                }
 
-                configure.Razor = options;
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<RazorViewEngineOptions>(o => { });
 
-                Assert.Equal(options, configure.Razor);
+                    configure.Razor = options;
+
+                    Assert.Equal(options, configure.Razor);
+                }
             }
         }
 
         public class ViewProperty
         {
-            [Fact]
-            public void Get_DefaultValue_ConfiguresOptions()
+            public class GetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new MvcViewOptions();
-
-                configure.Views(options);
-
-                Assert.False(options.HtmlHelperOptions.ClientValidationEnabled);
-            }
-
-            [Fact]
-            public void Set_ToNull_Throws()
-            {
-                Assert.Throws<ArgumentNullException>("value", () =>
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
                 {
-                    new MvcConfigureOptions().Views = null;
-                });
+                    var configure = new MvcConfigureOptions();
+                    var options = new MvcViewOptions();
+
+                    configure.Views(options);
+
+                    Assert.False(options.HtmlHelperOptions.ClientValidationEnabled);
+                }
             }
 
-            [Fact]
-            public void Set_SetsValue()
+            public class SetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new Action<MvcViewOptions>(o => { });
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().Views = null;
+                    });
+                }
 
-                configure.Views = options;
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<MvcViewOptions>(o => { });
 
-                Assert.Equal(options, configure.Views);
+                    configure.Views = options;
+
+                    Assert.Equal(options, configure.Views);
+                }
             }
         }
 
         public class AntiforgeryProperty
         {
-            [Fact]
-            public void Get_DefaultValue_ConfiguresOptions()
+            public class GetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new AntiforgeryOptions();
-
-                configure.Antiforgery(options);
-
-                Assert.Equal(".xsrf", options.FormFieldName);
-                Assert.Equal(".xsrf", options.HeaderName);
-                Assert.Equal(".xsrf", options.Cookie.Name);
-                Assert.True(options.Cookie.HttpOnly);
-                Assert.Equal(CookieSecurePolicy.Always, options.Cookie.SecurePolicy);
-                Assert.False(options.SuppressXFrameOptionsHeader);
-            }
-
-            [Fact]
-            public void Set_ToNull_Throws()
-            {
-                Assert.Throws<ArgumentNullException>("value", () =>
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
                 {
-                    new MvcConfigureOptions().Antiforgery = null;
-                });
+                    var configure = new MvcConfigureOptions();
+                    var options = new AntiforgeryOptions();
+
+                    configure.Antiforgery(options);
+
+                    Assert.Equal(".xsrf", options.FormFieldName);
+                    Assert.Equal(".xsrf", options.HeaderName);
+                    Assert.Equal(".xsrf", options.Cookie.Name);
+                    Assert.True(options.Cookie.HttpOnly);
+                    Assert.Equal(CookieSecurePolicy.Always, options.Cookie.SecurePolicy);
+                    Assert.False(options.SuppressXFrameOptionsHeader);
+                }
             }
 
-            [Fact]
-            public void Set_SetsValue()
+            public class SetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new Action<AntiforgeryOptions>(o => { });
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().Antiforgery = null;
+                    });
+                }
 
-                configure.Antiforgery = options;
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<AntiforgeryOptions>(o => { });
 
-                Assert.Equal(options, configure.Antiforgery);
+                    configure.Antiforgery = options;
+
+                    Assert.Equal(options, configure.Antiforgery);
+                }
             }
         }
 
         public class RoutingProperty
         {
-            [Fact]
-            public void Get_DefaultValue_ConfiguresOptions()
+            public class GetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new RouteOptions();
-
-                configure.Routing(options);
-
-                Assert.False(options.AppendTrailingSlash);
-                Assert.True(options.LowercaseUrls);
-            }
-
-            [Fact]
-            public void Set_ToNull_Throws()
-            {
-                Assert.Throws<ArgumentNullException>("value", () =>
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
                 {
-                    new MvcConfigureOptions().Routing = null;
-                });
+                    var configure = new MvcConfigureOptions();
+                    var options = new RouteOptions();
+
+                    configure.Routing(options);
+
+                    Assert.False(options.AppendTrailingSlash);
+                    Assert.True(options.LowercaseUrls);
+                }
             }
 
-            [Fact]
-            public void Set_SetsValue()
+            public class SetAccessor
             {
-                var configure = new MvcConfigureOptions();
-                var options = new Action<RouteOptions>(o => { });
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().Routing = null;
+                    });
+                }
 
-                configure.Routing = options;
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<RouteOptions>(o => { });
 
-                Assert.Equal(options, configure.Routing);
+                    configure.Routing = options;
+
+                    Assert.Equal(options, configure.Routing);
+                }
             }
         }
     }
