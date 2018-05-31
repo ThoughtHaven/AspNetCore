@@ -109,6 +109,9 @@ namespace Microsoft.Extensions.DependencyInjection
             cookiePolicy.CheckConsentNeeded = context => true;
             cookiePolicy.MinimumSameSitePolicy = SameSiteMode.None;
             cookiePolicy.Secure = CookieSecurePolicy.Always;
+
+            cookiePolicy.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
+            cookiePolicy.ConsentCookie.Name = ".gdpr.consent";
         };
         public Action<CookiePolicyOptions> CookiePolicy
         {

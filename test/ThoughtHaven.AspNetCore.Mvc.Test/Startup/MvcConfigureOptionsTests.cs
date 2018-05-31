@@ -375,6 +375,9 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     Assert.True(options.CheckConsentNeeded(new DefaultHttpContext()));
                     Assert.Equal(SameSiteMode.None, options.MinimumSameSitePolicy);
                     Assert.Equal(CookieSecurePolicy.Always, options.Secure);
+                    Assert.Equal(CookieSecurePolicy.Always,
+                        options.ConsentCookie.SecurePolicy);
+                    Assert.Equal(".gdpr.consent", options.ConsentCookie.Name);
                 }
             }
 
