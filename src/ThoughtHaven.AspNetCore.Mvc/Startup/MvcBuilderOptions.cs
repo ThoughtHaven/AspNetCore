@@ -14,8 +14,9 @@ namespace Microsoft.AspNetCore.Builder
         private string _statusCodePagePathFormat = "/errors/statuscode/{0}";
         public virtual string StatusCodePagePathFormat
         {
-            get { return _statusCodePagePathFormat; }
-            set { _statusCodePagePathFormat = Guard.NullOrWhiteSpace(nameof(value), value); }
+            get => this._statusCodePagePathFormat;
+            set => this._statusCodePagePathFormat = Guard.NullOrWhiteSpace(nameof(value),
+                value);
         }
 
         public virtual StaticFileOptions StaticFiles { get; } =

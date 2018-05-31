@@ -10,6 +10,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
         public bool Views_Called;
         public bool Antiforgery_Called;
         public bool Routing_Called;
+        public bool CookiePolicy_Called;
 
         public FakeMvcConfigureOptions()
         {
@@ -19,6 +20,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
             this.Views = o => { this.Views_Called = true; };
             this.Antiforgery = o => { this.Antiforgery_Called = true; };
             this.Routing = o => { this.Routing_Called = true; };
+            this.CookiePolicy = o => { this.CookiePolicy_Called = true; };
         }
     }
 }

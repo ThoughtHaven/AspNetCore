@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -101,6 +102,18 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             get => this._routing;
             set { this._routing = Guard.Null(nameof(value), value); }
+        }
+
+        private Action<CookiePolicyOptions> _cookiePolicy = cookiePolicy =>
+        {
+            cookiePolicy.CheckConsentNeeded = context => true;
+            cookiePolicy.MinimumSameSitePolicy = SameSiteMode.None;
+            cookiePolicy.Secure = CookieSecurePolicy.Always;
+        };
+        public Action<CookiePolicyOptions> CookiePolicy
+        {
+            get => this._cookiePolicy;
+            set { this._cookiePolicy = Guard.Null(nameof(value), value); }
         }
     }
 }

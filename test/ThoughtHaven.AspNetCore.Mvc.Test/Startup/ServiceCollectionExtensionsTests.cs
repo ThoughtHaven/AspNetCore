@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -64,6 +65,33 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     Assert.NotNull(service);
                     Assert.True(service is HttpContextAccessor);
+                }
+
+                [Fact]
+                public void WhenCalled_AddsCookiePolicyOptions()
+                {
+                    var services = Services();
+
+                    services.AddThoughtHavenMvc();
+
+                    var options = services.BuildServiceProvider()
+                        .GetRequiredService<IOptions<CookiePolicyOptions>>().Value;
+
+                    Assert.NotNull(options);
+                }
+
+                [Fact]
+                public void WhenCalled_ConfiguresCookiePolicyOptions()
+                {
+                    var services = Services();
+                    var configure = new FakeMvcConfigureOptions();
+
+                    services.AddThoughtHavenMvc(configure);
+
+                    var options = services.BuildServiceProvider()
+                        .GetRequiredService<IOptions<CookiePolicyOptions>>().Value;
+
+                    Assert.True(configure.CookiePolicy_Called);
                 }
 
                 [Fact]

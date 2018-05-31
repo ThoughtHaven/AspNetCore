@@ -5,11 +5,11 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
 {
     public class FakeLoggerFactory : ILoggerFactory
     {
-        public void AddProvider(ILoggerProvider provider) => throw new System.NotImplementedException();
+        public void AddProvider(ILoggerProvider provider) { }
         public ILogger CreateLogger(string categoryName) => new Logger();
-        public void Dispose() => throw new System.NotImplementedException();
+        public void Dispose() { }
 
-        private class Logger : ILogger
+        public class Logger : ILogger
         {
             public IDisposable BeginScope<TState>(TState state) =>
                 throw new NotImplementedException();
@@ -18,5 +18,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
                 TState state, Exception exception,
                 Func<TState, Exception, string> formatter) => new object();
         }
+
+        public class Logger<T> : Logger, ILogger<T> { }
     }
 }

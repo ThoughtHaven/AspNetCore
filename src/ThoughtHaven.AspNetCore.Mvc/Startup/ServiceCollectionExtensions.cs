@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ThoughtHaven;
@@ -20,7 +21,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.Configure(configure.CookiePolicy);
+
             var mvc = services.AddMvc(configure.Mvc)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(configure.Json)
                 .AddRazorOptions(configure.Razor)
                 .AddViewOptions(configure.Views);

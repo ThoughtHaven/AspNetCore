@@ -20,10 +20,13 @@ namespace Microsoft.AspNetCore.Builder
             else
             {
                 app.UseExceptionHandler(options.ExceptionHandler);
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute(options.StatusCodePagePathFormat);
             app.UseStaticFiles(options.StaticFiles);
+            app.UseCookiePolicy();
 
             return app.UseMvc();
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -64,6 +65,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     var options = new MvcConfigureOptions();
 
                     Assert.NotNull(options.Routing);
+                }
+
+                [Fact]
+                public void WhenCalled_SetsCookiePolicy()
+                {
+                    var options = new MvcConfigureOptions();
+
+                    Assert.NotNull(options.CookiePolicy);
                 }
             }
         }
@@ -347,6 +356,48 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     configure.Routing = options;
 
                     Assert.Equal(options, configure.Routing);
+                }
+            }
+        }
+
+        public class CookiePolicyProperty
+        {
+            public class GetAccessor
+            {
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new CookiePolicyOptions();
+
+                    configure.CookiePolicy(options);
+
+                    Assert.True(options.CheckConsentNeeded(new DefaultHttpContext()));
+                    Assert.Equal(SameSiteMode.None, options.MinimumSameSitePolicy);
+                    Assert.Equal(CookieSecurePolicy.Always, options.Secure);
+                }
+            }
+
+            public class SetAccessor
+            {
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcConfigureOptions().CookiePolicy = null;
+                    });
+                }
+
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcConfigureOptions();
+                    var options = new Action<CookiePolicyOptions>(o => { });
+
+                    configure.CookiePolicy = options;
+
+                    Assert.Equal(options, configure.CookiePolicy);
                 }
             }
         }
