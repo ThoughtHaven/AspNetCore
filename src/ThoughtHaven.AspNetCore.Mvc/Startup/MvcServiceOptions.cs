@@ -11,7 +11,7 @@ using ThoughtHaven;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public class MvcConfigureOptions
+    public class MvcServiceOptions
     {
         private Action<MvcOptions> _mvc = options =>
         {

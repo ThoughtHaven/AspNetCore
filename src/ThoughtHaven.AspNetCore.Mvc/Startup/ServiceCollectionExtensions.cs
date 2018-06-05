@@ -9,11 +9,11 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class ThoughtHavenMvcServiceCollectionExtensions
     {
         public static IMvcBuilder AddThoughtHavenMvc(this IServiceCollection services,
-            MvcConfigureOptions configure = null)
+            MvcServiceOptions options = null)
         {
             Guard.Null(nameof(services), services);
 
-            configure = configure ?? new MvcConfigureOptions();
+            options = options ?? new MvcServiceOptions();
 
             services.TryAddSingleton<SystemClock>();
 
@@ -21,16 +21,16 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.Configure(configure.CookiePolicy);
+            services.Configure(options.CookiePolicy);
 
-            var mvc = services.AddMvc(configure.Mvc)
+            var mvc = services.AddMvc(options.Mvc)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddJsonOptions(configure.Json)
-                .AddRazorOptions(configure.Razor)
-                .AddViewOptions(configure.Views);
+                .AddJsonOptions(options.Json)
+                .AddRazorOptions(options.Razor)
+                .AddViewOptions(options.Views);
 
-            services.AddAntiforgery(configure.Antiforgery)
-                .AddRouting(configure.Routing);
+            services.AddAntiforgery(options.Antiforgery)
+                .AddRouting(options.Routing);
 
             return mvc;
         }

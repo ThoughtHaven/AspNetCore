@@ -2,7 +2,7 @@
 
 namespace ThoughtHaven.AspNetCore.Mvc.Fakes
 {
-    public class FakeMvcConfigureOptions : MvcConfigureOptions
+    public class FakeMvcServiceOptions : MvcServiceOptions
     {
         public bool Mvc_Called;
         public bool Json_Called;
@@ -12,7 +12,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
         public bool Routing_Called;
         public bool CookiePolicy_Called;
 
-        public FakeMvcConfigureOptions()
+        public FakeMvcServiceOptions()
         {
             this.Mvc = o => { this.Mvc_Called = true; };
             this.Json = o => { this.Json_Called = true; };

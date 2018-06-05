@@ -13,7 +13,7 @@ using Xunit;
 
 namespace ThoughtHaven.AspNetCore.Mvc.Startup
 {
-    public class MvcConfigureOptionsTests
+    public class MvcServiceOptionsTests
     {
         public class Constructor
         {
@@ -22,7 +22,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsMvc()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.Mvc);
                 }
@@ -30,7 +30,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsJson()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.Json);
                 }
@@ -38,7 +38,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsRazor()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.Razor);
                 }
@@ -46,7 +46,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsViews()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.Views);
                 }
@@ -54,7 +54,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsAntiforgery()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.Antiforgery);
                 }
@@ -62,7 +62,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsRouting()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.Routing);
                 }
@@ -70,7 +70,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void WhenCalled_SetsCookiePolicy()
                 {
-                    var options = new MvcConfigureOptions();
+                    var options = new MvcServiceOptions();
 
                     Assert.NotNull(options.CookiePolicy);
                 }
@@ -84,7 +84,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new MvcOptions();
 
                     configure.Mvc(options);
@@ -104,14 +104,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().Mvc = null;
+                        new MvcServiceOptions().Mvc = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<MvcOptions>(o => { });
 
                     configure.Mvc = options;
@@ -128,7 +128,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new MvcJsonOptions();
 
                     configure.Json(options);
@@ -148,14 +148,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().Json = null;
+                        new MvcServiceOptions().Json = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<MvcJsonOptions>(o => { });
 
                     configure.Json = options;
@@ -172,7 +172,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new RazorViewEngineOptions();
 
                     configure.Razor(options);
@@ -217,14 +217,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().Razor = null;
+                        new MvcServiceOptions().Razor = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<RazorViewEngineOptions>(o => { });
 
                     configure.Razor = options;
@@ -241,7 +241,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new MvcViewOptions();
 
                     configure.Views(options);
@@ -257,14 +257,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().Views = null;
+                        new MvcServiceOptions().Views = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<MvcViewOptions>(o => { });
 
                     configure.Views = options;
@@ -281,7 +281,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new AntiforgeryOptions();
 
                     configure.Antiforgery(options);
@@ -302,14 +302,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().Antiforgery = null;
+                        new MvcServiceOptions().Antiforgery = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<AntiforgeryOptions>(o => { });
 
                     configure.Antiforgery = options;
@@ -326,7 +326,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new RouteOptions();
 
                     configure.Routing(options);
@@ -343,14 +343,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().Routing = null;
+                        new MvcServiceOptions().Routing = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<RouteOptions>(o => { });
 
                     configure.Routing = options;
@@ -367,7 +367,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 [Fact]
                 public void DefaultValue_ConfiguresOptions()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new CookiePolicyOptions();
 
                     configure.CookiePolicy(options);
@@ -388,14 +388,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcConfigureOptions().CookiePolicy = null;
+                        new MvcServiceOptions().CookiePolicy = null;
                     });
                 }
 
                 [Fact]
                 public void WhenCalled_SetsValue()
                 {
-                    var configure = new MvcConfigureOptions();
+                    var configure = new MvcServiceOptions();
                     var options = new Action<CookiePolicyOptions>(o => { });
 
                     configure.CookiePolicy = options;

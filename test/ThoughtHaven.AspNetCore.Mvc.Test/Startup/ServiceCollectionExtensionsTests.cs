@@ -84,7 +84,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresCookiePolicyOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
@@ -111,7 +111,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresMvcOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
@@ -138,7 +138,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresMvcJsonOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
@@ -165,7 +165,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresRazorViewEngineOptionsOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
@@ -192,7 +192,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresMvcViewOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
@@ -219,7 +219,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresAntiforgeryOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
@@ -246,7 +246,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_ConfiguresRouteOptions()
                 {
                     var services = Services();
-                    var configure = new FakeMvcConfigureOptions();
+                    var configure = new FakeMvcServiceOptions();
 
                     services.AddThoughtHavenMvc(configure);
 
