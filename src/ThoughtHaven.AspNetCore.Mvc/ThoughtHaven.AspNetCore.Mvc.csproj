@@ -8,7 +8,7 @@
     <Product>Thought Haven AspNetCore Mvc</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A slightly more opinionated approach to AspNetCore MVC with more secure defaults and common best practices.</Description>
-    <Version>0.105.0</Version>
+    <Version>0.106.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +18,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.0" />
     <PackageReference Include="ThoughtHaven.Core" Version="0.101.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThoughtHaven.AspNetCore.Abstractions\ThoughtHaven.AspNetCore.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
