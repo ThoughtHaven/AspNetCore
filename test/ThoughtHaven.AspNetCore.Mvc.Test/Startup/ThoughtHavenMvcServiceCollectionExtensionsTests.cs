@@ -9,11 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using ThoughtHaven.AspNetCore.Mvc.Fakes;
+using ThoughtHaven.AspNetCore.Tracking;
 using Xunit;
 
 namespace ThoughtHaven.AspNetCore.Mvc.Startup
 {
-    public class ServiceCollectionExtensionsTests
+    public class ThoughtHavenMvcServiceCollectionExtensionsTests
     {
         public class AddThoughtHavenMvcMethod
         {
@@ -68,30 +69,17 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 }
 
                 [Fact]
-                public void WhenCalled_AddsCookiePolicyOptions()
+                public void WhenCalled_AddsTrackingConsentService()
                 {
                     var services = Services();
 
                     services.AddThoughtHavenMvc();
 
-                    var options = services.BuildServiceProvider()
-                        .GetRequiredService<IOptions<CookiePolicyOptions>>().Value;
+                    var service = services.BuildServiceProvider()
+                        .GetRequiredService<ITrackingConsentService>();
 
-                    Assert.NotNull(options);
-                }
-
-                [Fact]
-                public void WhenCalled_ConfiguresCookiePolicyOptions()
-                {
-                    var services = Services();
-                    var configure = new FakeMvcServiceOptions();
-
-                    services.AddThoughtHavenMvc(configure);
-
-                    var options = services.BuildServiceProvider()
-                        .GetRequiredService<IOptions<CookiePolicyOptions>>().Value;
-
-                    Assert.True(configure.CookiePolicy_Called);
+                    Assert.NotNull(service);
+                    Assert.IsType<TrackingConsentService>(service);
                 }
 
                 [Fact]
@@ -200,33 +188,6 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                         .GetRequiredService<IOptions<MvcViewOptions>>().Value;
 
                     Assert.True(configure.Views_Called);
-                }
-
-                [Fact]
-                public void WhenCalled_AddsAntiforgeryOptions()
-                {
-                    var services = Services();
-
-                    services.AddThoughtHavenMvc();
-
-                    var options = services.BuildServiceProvider()
-                        .GetRequiredService<IOptions<AntiforgeryOptions>>().Value;
-
-                    Assert.NotNull(options);
-                }
-
-                [Fact]
-                public void WhenCalled_ConfiguresAntiforgeryOptions()
-                {
-                    var services = Services();
-                    var configure = new FakeMvcServiceOptions();
-
-                    services.AddThoughtHavenMvc(configure);
-
-                    var options = services.BuildServiceProvider()
-                        .GetRequiredService<IOptions<AntiforgeryOptions>>().Value;
-
-                    Assert.True(configure.Antiforgery_Called);
                 }
 
                 [Fact]

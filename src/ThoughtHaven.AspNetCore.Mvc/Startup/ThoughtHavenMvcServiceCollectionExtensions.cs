@@ -20,8 +20,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.Configure(options.CookiePolicy);
+            
+            services.AddTrackingConsent(options.TrackingConsent);
 
             var mvc = services.AddMvc(options.Mvc)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
@@ -29,8 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddRazorOptions(options.Razor)
                 .AddViewOptions(options.Views);
 
-            services.AddAntiforgery(options.Antiforgery)
-                .AddRouting(options.Routing);
+            services.AddRouting(options.Routing);
 
             return mvc;
         }

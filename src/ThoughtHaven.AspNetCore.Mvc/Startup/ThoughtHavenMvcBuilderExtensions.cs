@@ -26,7 +26,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute(options.StatusCodePagePathFormat);
             app.UseStaticFiles(options.StaticFiles);
-            app.UseCookiePolicy();
+            app.UseTrackingConsent();
 
             return app.UseMvc();
         }

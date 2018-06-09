@@ -52,14 +52,6 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 }
 
                 [Fact]
-                public void WhenCalled_SetsAntiforgery()
-                {
-                    var options = new MvcServiceOptions();
-
-                    Assert.NotNull(options.Antiforgery);
-                }
-
-                [Fact]
                 public void WhenCalled_SetsRouting()
                 {
                     var options = new MvcServiceOptions();
@@ -68,11 +60,11 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 }
 
                 [Fact]
-                public void WhenCalled_SetsCookiePolicy()
+                public void WhenCalled_SetsTrackingConsent()
                 {
                     var options = new MvcServiceOptions();
 
-                    Assert.NotNull(options.CookiePolicy);
+                    Assert.NotNull(options.TrackingConsent);
                 }
             }
         }
@@ -347,51 +339,6 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
             }
         }
 
-        public class AntiforgeryProperty
-        {
-            public class GetAccessor
-            {
-                [Fact]
-                public void DefaultValue_ConfiguresOptions()
-                {
-                    var configure = new MvcServiceOptions();
-                    var options = new AntiforgeryOptions();
-
-                    configure.Antiforgery(options);
-
-                    Assert.Equal(".xsrf", options.FormFieldName);
-                    Assert.Equal(".xsrf", options.HeaderName);
-                    Assert.Equal(".xsrf", options.Cookie.Name);
-                    Assert.True(options.Cookie.HttpOnly);
-                    Assert.Equal(CookieSecurePolicy.Always, options.Cookie.SecurePolicy);
-                    Assert.False(options.SuppressXFrameOptionsHeader);
-                }
-            }
-
-            public class SetAccessor
-            {
-                [Fact]
-                public void NullValue_Throws()
-                {
-                    Assert.Throws<ArgumentNullException>("value", () =>
-                    {
-                        new MvcServiceOptions().Antiforgery = null;
-                    });
-                }
-
-                [Fact]
-                public void WhenCalled_SetsValue()
-                {
-                    var configure = new MvcServiceOptions();
-                    var options = new Action<AntiforgeryOptions>(o => { });
-
-                    configure.Antiforgery = options;
-
-                    Assert.Equal(options, configure.Antiforgery);
-                }
-            }
-        }
-
         public class RoutingProperty
         {
             public class GetAccessor
@@ -433,24 +380,16 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
             }
         }
 
-        public class CookiePolicyProperty
+        public class TrackingConsentProperty
         {
             public class GetAccessor
             {
                 [Fact]
-                public void DefaultValue_ConfiguresOptions()
+                public void DefaultValue_ReturnsOptions()
                 {
                     var configure = new MvcServiceOptions();
-                    var options = new CookiePolicyOptions();
 
-                    configure.CookiePolicy(options);
-
-                    Assert.True(options.CheckConsentNeeded(new DefaultHttpContext()));
-                    Assert.Equal(SameSiteMode.None, options.MinimumSameSitePolicy);
-                    Assert.Equal(CookieSecurePolicy.Always, options.Secure);
-                    Assert.Equal(CookieSecurePolicy.Always,
-                        options.ConsentCookie.SecurePolicy);
-                    Assert.Equal(".gdpr.consent", options.ConsentCookie.Name);
+                    Assert.NotNull(configure.TrackingConsent);
                 }
             }
 
@@ -461,7 +400,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().CookiePolicy = null;
+                        new MvcServiceOptions().TrackingConsent = null;
                     });
                 }
 
@@ -469,11 +408,11 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_SetsValue()
                 {
                     var configure = new MvcServiceOptions();
-                    var options = new Action<CookiePolicyOptions>(o => { });
+                    var options = new TrackingConsentOptions();
 
-                    configure.CookiePolicy = options;
+                    configure.TrackingConsent = options;
 
-                    Assert.Equal(options, configure.CookiePolicy);
+                    Assert.Equal(options, configure.TrackingConsent);
                 }
             }
         }

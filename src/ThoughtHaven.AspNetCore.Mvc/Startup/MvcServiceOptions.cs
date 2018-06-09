@@ -86,23 +86,6 @@ namespace Microsoft.Extensions.DependencyInjection
             set { this._views = Guard.Null(nameof(value), value); }
         }
 
-        private Action<AntiforgeryOptions> _antiforgery = antiforgery =>
-        {
-            string xsrf = ".xsrf";
-
-            antiforgery.FormFieldName = xsrf;
-            antiforgery.HeaderName = xsrf;
-            antiforgery.Cookie.Name = xsrf;
-            antiforgery.Cookie.HttpOnly = true;
-            antiforgery.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            antiforgery.SuppressXFrameOptionsHeader = false;
-        };
-        public Action<AntiforgeryOptions> Antiforgery
-        {
-            get => this._antiforgery;
-            set { this._antiforgery = Guard.Null(nameof(value), value); }
-        }
-
         private Action<RouteOptions> _routing = routing =>
         {
             routing.AppendTrailingSlash = false;
@@ -114,19 +97,11 @@ namespace Microsoft.Extensions.DependencyInjection
             set { this._routing = Guard.Null(nameof(value), value); }
         }
 
-        private Action<CookiePolicyOptions> _cookiePolicy = cookiePolicy =>
+        private TrackingConsentOptions _trackingConsent = new TrackingConsentOptions();
+        public TrackingConsentOptions TrackingConsent
         {
-            cookiePolicy.CheckConsentNeeded = context => true;
-            cookiePolicy.MinimumSameSitePolicy = SameSiteMode.None;
-            cookiePolicy.Secure = CookieSecurePolicy.Always;
-
-            cookiePolicy.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
-            cookiePolicy.ConsentCookie.Name = ".gdpr.consent";
-        };
-        public Action<CookiePolicyOptions> CookiePolicy
-        {
-            get => this._cookiePolicy;
-            set { this._cookiePolicy = Guard.Null(nameof(value), value); }
+            get => this._trackingConsent;
+            set => this._trackingConsent = Guard.Null(nameof(value), value);
         }
     }
 }

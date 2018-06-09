@@ -18,9 +18,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
             this.Json = o => { this.Json_Called = true; };
             this.Razor = o => { this.Razor_Called = true; };
             this.Views = o => { this.Views_Called = true; };
-            this.Antiforgery = o => { this.Antiforgery_Called = true; };
             this.Routing = o => { this.Routing_Called = true; };
-            this.CookiePolicy = o => { this.CookiePolicy_Called = true; };
         }
     }
 }
