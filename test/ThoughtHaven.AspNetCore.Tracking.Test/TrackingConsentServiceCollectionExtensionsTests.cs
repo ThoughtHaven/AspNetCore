@@ -74,6 +74,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Equal(HttpOnlyPolicy.Always, options.HttpOnly);
                     Assert.Equal(CookieSecurePolicy.Always, options.Secure);
                     Assert.Equal(".tracking.consent", options.ConsentCookie.Name);
+                    Assert.True(options.ConsentCookie.HttpOnly);
                     Assert.Equal(CookieSecurePolicy.Always,
                         options.ConsentCookie.SecurePolicy);
                 }

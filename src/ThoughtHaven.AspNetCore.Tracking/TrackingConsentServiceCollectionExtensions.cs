@@ -37,6 +37,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 cookiePolicy.HttpOnly = HttpOnlyPolicy.Always;
                 cookiePolicy.Secure = CookieSecurePolicy.Always;
                 cookiePolicy.ConsentCookie.Name = ".tracking.consent";
+                cookiePolicy.ConsentCookie.HttpOnly = true;
                 cookiePolicy.ConsentCookie.SecurePolicy = CookieSecurePolicy.Always;
 
                 options.CookiePolicy?.Invoke(cookiePolicy);
