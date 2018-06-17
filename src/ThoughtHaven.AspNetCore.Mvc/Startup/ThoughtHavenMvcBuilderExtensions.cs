@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
+using System;
 using ThoughtHaven;
 
 namespace Microsoft.AspNetCore.Builder
@@ -6,7 +8,8 @@ namespace Microsoft.AspNetCore.Builder
     public static class ThoughtHavenMvcBuilderExtensions
     {
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
-            IHostingEnvironment environment, MvcBuilderOptions options = null)
+            IHostingEnvironment environment, MvcBuilderOptions options = null,
+            Action<IRouteBuilder> configureRoutes = null)
         {
             Guard.Null(nameof(app), app);
             Guard.Null(nameof(environment), environment);
@@ -28,7 +31,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseStaticFiles(options.StaticFiles);
             app.UseTrackingConsent();
 
-            return app.UseMvc();
+            return app.UseMvc(configureRoutes);
         }
     }
 }
