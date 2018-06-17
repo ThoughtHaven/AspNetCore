@@ -31,7 +31,7 @@ namespace Microsoft.AspNetCore.Builder
             app.UseStaticFiles(options.StaticFiles);
             app.UseTrackingConsent();
 
-            return app.UseMvc(configureRoutes);
+            return configureRoutes != null ? app.UseMvc(configureRoutes) : app.UseMvc();
         }
     }
 }
