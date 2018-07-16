@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.100.0</Version>
+    <Version>0.101.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven AspNetCore Mvc UI</Product>
@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.1.1" />
   </ItemGroup>
 
 </Project>

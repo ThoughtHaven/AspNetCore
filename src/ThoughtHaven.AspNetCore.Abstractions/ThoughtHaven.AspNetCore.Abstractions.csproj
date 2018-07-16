@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ThoughtHaven.AspNetCore</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.100.0</Version>
+    <Version>0.101.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Description>Core abstractions and helpers for all AspNetCore applications.</Description>
@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="ThoughtHaven.Guards" Version="0.101.0" />
   </ItemGroup>
 
