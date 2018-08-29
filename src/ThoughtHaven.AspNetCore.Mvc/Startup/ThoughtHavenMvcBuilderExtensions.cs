@@ -10,6 +10,20 @@ namespace Microsoft.AspNetCore.Builder
     public static class ThoughtHavenMvcBuilderExtensions
     {
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
+            IHostingEnvironment environment, string iisUrlRewriteFilePath,
+            Action<IRouteBuilder> configureRoutes = null)
+        {
+            Guard.Null(nameof(app), app);
+            Guard.Null(nameof(environment), environment);
+            Guard.NullOrWhiteSpace(nameof(iisUrlRewriteFilePath), iisUrlRewriteFilePath);
+
+            var options = new MvcBuilderOptions();
+            options.Rewrite.IISUrlRewriteFilePath = iisUrlRewriteFilePath;
+
+            return app.UseThoughtHavenMvc(environment, options, configureRoutes);
+        }
+
+        public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
             IHostingEnvironment environment, MvcBuilderOptions options = null,
             Action<IRouteBuilder> configureRoutes = null)
         {
