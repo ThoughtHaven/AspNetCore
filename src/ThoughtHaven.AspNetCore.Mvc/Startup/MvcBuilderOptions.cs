@@ -27,5 +27,12 @@ namespace Microsoft.AspNetCore.Builder
                     ctx.Context.Response.Headers[CacheControl] = "public,max-age=31536000";
                 }
             };
+
+        public RewriteOptions Rewrite { get; } = new RewriteOptions();
+
+        public class RewriteOptions
+        {
+            public string IISUrlRewriteFilePath { get; set; }
+        }
     }
 }

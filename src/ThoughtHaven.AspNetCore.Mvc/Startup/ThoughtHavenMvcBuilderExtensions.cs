@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
 using System;
+using System.IO;
 using ThoughtHaven;
 
 namespace Microsoft.AspNetCore.Builder
@@ -24,6 +26,14 @@ namespace Microsoft.AspNetCore.Builder
             {
                 app.UseExceptionHandler(options.ExceptionHandler);
                 app.UseHsts();
+            }
+
+            if (!string.IsNullOrWhiteSpace(options.Rewrite.IISUrlRewriteFilePath))
+            {
+                using (var rewrite = File.OpenText(options.Rewrite.IISUrlRewriteFilePath))
+                {
+                    app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rewrite));
+                }
             }
 
             app.UseHttpsRedirection();

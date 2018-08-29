@@ -91,6 +91,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     Assert.NotNull(options.StaticFiles);
                     Assert.NotNull(options.StaticFiles.OnPrepareResponse);
                 }
+
+                [Fact]
+                public void WhenCalled_SetsRewrite()
+                {
+                    var options = Options();
+
+                    Assert.NotNull(options.Rewrite);
+                }
             }
         }
 
