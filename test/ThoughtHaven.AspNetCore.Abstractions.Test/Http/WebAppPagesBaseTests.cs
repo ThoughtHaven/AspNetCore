@@ -91,6 +91,33 @@ namespace ThoughtHaven.AspNetCore.Http
 
                     Assert.Equal(new Uri("https://example.com/path?one=1"), result);
                 }
+
+                [Fact]
+                public void PathHasQuery_ReturnsUri()
+                {
+                    var result = Pages().BuildUri("/path?one=1");
+
+                    Assert.Equal(new Uri("https://example.com/path?one=1"), result);
+                }
+
+                [Fact]
+                public void PathHasQueryAndQueryHasValue_ReturnsUri()
+                {
+                    var result = Pages().BuildUri("/path?one=1",
+                        new QueryString("?two=2"));
+
+                    Assert.Equal(new Uri("https://example.com/path?one=1&two=2"), result);
+                }
+
+                [Fact]
+                public void PathHasEncodedQueryAndQueryHasEncodedValue_ReturnsUri()
+                {
+                    var result = Pages().BuildUri("/path?encodedone=%2Furl",
+                        new QueryString("?encodedtwo=%2Furl"));
+
+                    Assert.Equal(new Uri("https://example.com/path?encodedone=%2Furl&encodedtwo=%2Furl"),
+                        result);
+                }
             }
         }
 

@@ -18,6 +18,19 @@ namespace ThoughtHaven.AspNetCore.Http
 
             if (path.EndsWith("/")) { path = path.Substring(0, path.Length - 1); }
 
+            var queryIndex = path.IndexOf("?");
+            if (queryIndex != -1)
+            {
+                var pathQueryString = path.Substring(startIndex: queryIndex);
+                path = path.Substring(0, length: queryIndex);
+
+                var fullQuery = query.HasValue
+                    ? $"{pathQueryString}{query.Value.Replace("?", "&")}"
+                    : pathQueryString;
+
+                query = new QueryString(fullQuery);
+            }
+
             return this.BuildUri(new PathString(path), query);
         }
 
