@@ -35,7 +35,16 @@ namespace ThoughtHaven.AspNetCore.Http
         }
 
         protected virtual Uri BuildUri(PathString path,
-            QueryString query = default(QueryString)) =>
-            new Uri(this.BaseUri, $"{path}{query}");
+            QueryString query = default(QueryString))
+        {
+            var baseUri = this.BaseUri.ToString();
+
+            if (baseUri.EndsWith("/"))
+            {
+                baseUri = baseUri.Substring(0, baseUri.Length - 1);
+            }
+
+            return new Uri($"{baseUri}{path}{query}");
+        }
     }
 }

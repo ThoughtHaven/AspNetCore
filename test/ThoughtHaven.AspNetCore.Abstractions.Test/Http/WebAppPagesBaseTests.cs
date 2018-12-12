@@ -43,85 +43,172 @@ namespace ThoughtHaven.AspNetCore.Http
                         Pages().BuildUri(path: " ");
                     });
                 }
-
+                
                 [Fact]
-                public void EmptyPath_ReturnsUri()
+                public void RootBaseUriWithEmptyPath_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("");
+                    var result = Pages("https://example.com").BuildUri("");
 
-                    Assert.Equal(new Uri("https://example.com/"), result);
+                    Assert.Equal("https://example.com/", result.ToString());
                 }
 
                 [Fact]
-                public void EmptyPathAndQuery_ReturnsUri()
+                public void PathBaseUriWithEmptyPath_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("", new QueryString("?one=1"));
+                    var result = Pages("https://example.com/with-path").BuildUri("");
 
-                    Assert.Equal(new Uri("https://example.com/?one=1"), result);
+                    Assert.Equal("https://example.com/with-path", result.ToString());
                 }
 
                 [Fact]
-                public void RootPath_ReturnsUri()
+                public void RootBaseUriEmptyPathAndQuery_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("/");
+                    var result = Pages("https://example.com")
+                        .BuildUri("", new QueryString("?one=1"));
 
-                    Assert.Equal(new Uri("https://example.com/"), result);
+                    Assert.Equal("https://example.com/?one=1", result.ToString());
                 }
 
                 [Fact]
-                public void RootPathAndQuery_ReturnsUri()
+                public void PathBaseUriEmptyPathAndQuery_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("", new QueryString("?one=1"));
+                    var result = Pages("https://example.com/with-path")
+                        .BuildUri("", new QueryString("?one=1"));
 
-                    Assert.Equal(new Uri("https://example.com/?one=1"), result);
+                    Assert.Equal($"https://example.com/with-path?one=1", result.ToString());
                 }
 
                 [Fact]
-                public void WithPath_ReturnsUri()
+                public void RootBaseUriRootPath_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("/path");
+                    var result = Pages("https://example.com").BuildUri("/");
 
-                    Assert.Equal(new Uri("https://example.com/path"), result);
+                    Assert.Equal("https://example.com/", result.ToString());
                 }
 
                 [Fact]
-                public void WithPathAndQuery_ReturnsUri()
+                public void PathBaseUriRootPath_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("/path", new QueryString("?one=1"));
+                    var result = Pages("https://example.com/with-path").BuildUri("/");
 
-                    Assert.Equal(new Uri("https://example.com/path?one=1"), result);
+                    Assert.Equal("https://example.com/with-path", result.ToString());
                 }
 
                 [Fact]
-                public void PathHasQuery_ReturnsUri()
+                public void RootBaseUriRootPathAndQuery_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("/path?one=1");
+                    var result = Pages("https://example.com")
+                        .BuildUri("", new QueryString("?one=1"));
 
-                    Assert.Equal(new Uri("https://example.com/path?one=1"), result);
+                    Assert.Equal("https://example.com/?one=1", result.ToString());
                 }
 
                 [Fact]
-                public void PathHasQueryAndQueryHasValue_ReturnsUri()
+                public void PathBaseUriRootPathAndQuery_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("/path?one=1",
+                    var result = Pages("https://example.com/with-path")
+                        .BuildUri("", new QueryString("?one=1"));
+
+                    Assert.Equal("https://example.com/with-path?one=1", result.ToString());
+                }
+
+                [Fact]
+                public void RootBaseUriWithPath_ReturnsUri()
+                {
+                    var result = Pages("https://example.com").BuildUri("/path");
+
+                    Assert.Equal($"https://example.com/path", result.ToString());
+                }
+
+                [Fact]
+                public void PathBaseUriWithPath_ReturnsUri()
+                {
+                    var result = Pages("https://example.com/with-path").BuildUri("/path");
+
+                    Assert.Equal($"https://example.com/with-path/path", result.ToString());
+                }
+
+                [Fact]
+                public void RootBaseUriWithPathAndQuery_ReturnsUri()
+                {
+                    var result = Pages("https://example.com")
+                        .BuildUri("/path", new QueryString("?one=1"));
+
+                    Assert.Equal("https://example.com/path?one=1", result.ToString());
+                }
+
+                [Fact]
+                public void PathBaseUriWithPathAndQuery_ReturnsUri()
+                {
+                    var result = Pages("https://example.com/with-path")
+                        .BuildUri("/path", new QueryString("?one=1"));
+
+                    Assert.Equal("https://example.com/with-path/path?one=1",
+                        result.ToString());
+                }
+
+                [Fact]
+                public void RootBaseUriAndPathHasQuery_ReturnsUri()
+                {
+                    var result = Pages("https://example.com").BuildUri("/path?one=1");
+
+                    Assert.Equal("https://example.com/path?one=1", result.ToString());
+                }
+
+                [Fact]
+                public void PathBaseUriAndPathHasQuery_ReturnsUri()
+                {
+                    var result = Pages("https://example.com/with-path")
+                        .BuildUri("/path?one=1");
+
+                    Assert.Equal("https://example.com/with-path/path?one=1",
+                        result.ToString());
+                }
+
+                [Fact]
+                public void RootBaseUriAndPathHasQueryAndQueryHasValue_ReturnsUri()
+                {
+                    var result = Pages("https://example.com").BuildUri("/path?one=1",
                         new QueryString("?two=2"));
 
-                    Assert.Equal(new Uri("https://example.com/path?one=1&two=2"), result);
+                    Assert.Equal("https://example.com/path?one=1&two=2", result.ToString());
                 }
 
                 [Fact]
-                public void PathHasEncodedQueryAndQueryHasEncodedValue_ReturnsUri()
+                public void PathBaseUriAndPathHasQueryAndQueryHasValue_ReturnsUri()
                 {
-                    var result = Pages().BuildUri("/path?encodedone=%2Furl",
-                        new QueryString("?encodedtwo=%2Furl"));
+                    var result = Pages("https://example.com/with-path")
+                        .BuildUri("/path?one=1", new QueryString("?two=2"));
 
-                    Assert.Equal(new Uri("https://example.com/path?encodedone=%2Furl&encodedtwo=%2Furl"),
-                        result);
+                    Assert.Equal("https://example.com/with-path/path?one=1&two=2",
+                        result.ToString());
+                }
+
+                [Fact]
+                public void RootBaseUriAndPathHasEncodedQueryAndQueryHasEncodedValue_ReturnsUri()
+                {
+                    var result = Pages("https://example.com")
+                        .BuildUri("/path?encodedone=%2Furl",
+                            new QueryString("?encodedtwo=%2Furl"));
+
+                    Assert.Equal("https://example.com/path?encodedone=%2Furl&encodedtwo=%2Furl",
+                        result.ToString());
+                }
+
+                [Fact]
+                public void PathBaseUriAndPathHasEncodedQueryAndQueryHasEncodedValue_ReturnsUri()
+                {
+                    var result = Pages("https://example.com/with-path")
+                        .BuildUri("/path?encodedone=%2Furl",
+                            new QueryString("?encodedtwo=%2Furl"));
+
+                    Assert.Equal("https://example.com/with-path/path?encodedone=%2Furl&encodedtwo=%2Furl",
+                        result.ToString());
                 }
             }
         }
 
-        private static FakeWebAppPagesBase Pages() =>
-            new FakeWebAppPagesBase(new Uri("https://example.com"));
+        private static FakeWebAppPagesBase Pages(string baseUri = "https://example.com") =>
+            new FakeWebAppPagesBase(new Uri(baseUri));
     }
 }
