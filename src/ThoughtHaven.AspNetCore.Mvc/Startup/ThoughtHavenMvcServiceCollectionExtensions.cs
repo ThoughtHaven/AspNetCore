@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTrackingConsent(options.TrackingConsent);
 
             var mvc = services.AddMvc(options.Mvc)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options.Json)
                 .AddRazorOptions(options.Razor)
                 .AddViewOptions(options.Views);
