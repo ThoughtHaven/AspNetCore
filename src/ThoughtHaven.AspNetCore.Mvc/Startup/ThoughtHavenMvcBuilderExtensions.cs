@@ -44,7 +44,10 @@ namespace Microsoft.AspNetCore.Builder
 
             if (!string.IsNullOrWhiteSpace(options.Rewrite.IISUrlRewriteFilePath))
             {
-                using (var rewrite = File.OpenText(options.Rewrite.IISUrlRewriteFilePath))
+                string baseDir = environment.ContentRootPath;
+                var filePath = Path.Combine(baseDir, options.Rewrite.IISUrlRewriteFilePath);
+
+                using (var rewrite = File.OpenText(filePath))
                 {
                     app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rewrite));
                 }
