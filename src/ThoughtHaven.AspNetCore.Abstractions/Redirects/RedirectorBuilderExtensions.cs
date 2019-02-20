@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,13 +24,9 @@ namespace Microsoft.AspNetCore.Builder
             {
                 routes.MapGet(redirect.Template, context =>
                 {
-                    var location = redirect.Location;
                     var routeData = context.GetRouteData();
 
-                    foreach (var kvp in routeData.Values)
-                    {
-                        location = location.Replace($"{{{kvp.Key}}}", kvp.Value.ToString());
-                    }
+                    var location = BuildLocation(redirect, routeData);
 
                     context.Response.Redirect(location, redirect.Permanent);
 
@@ -38,6 +35,24 @@ namespace Microsoft.AspNetCore.Builder
             }
 
             return app.UseRouter(routes.Build());
+        }
+
+        public static string BuildLocation(RedirectRoute redirect, RouteData routeData)
+        {
+            Guard.Null(nameof(redirect), redirect);
+            Guard.Null(nameof(routeData), routeData);
+
+            var location = redirect.Location;
+
+            foreach (var kvp in routeData.Values)
+            {
+                var key = kvp.Key;
+                var value = kvp.Value;
+
+                location = location.Replace($"{{{key}}}", value.ToString());
+            }
+
+            return location;
         }
     }
 }
