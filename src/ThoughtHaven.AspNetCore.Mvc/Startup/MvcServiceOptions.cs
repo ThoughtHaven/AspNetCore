@@ -41,36 +41,14 @@ namespace Microsoft.Extensions.DependencyInjection
 
         private Action<RazorViewEngineOptions> _razor = razor =>
         {
-            var existingAreaLocations = razor.AreaViewLocationFormats.ToArray();
-
-            razor.AreaViewLocationFormats.Clear();
-            razor.AreaViewLocationFormats.Add("/Features/{2}/{1}/{0}.cshtml");
-            razor.AreaViewLocationFormats.Add("/Features/{2}/{1}/Partials/{0}.cshtml");
-            razor.AreaViewLocationFormats.Add("/Features/{2}/Shared/{0}.cshtml");
-            razor.AreaViewLocationFormats.Add("/Features/{2}/Shared/Partials/{0}.cshtml");
-            razor.AreaViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
-            razor.AreaViewLocationFormats.Add("/Features/Shared/Partials/{0}.cshtml");
-            foreach (var location in existingAreaLocations)
-            { razor.AreaViewLocationFormats.Add(location); }
-            razor.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/Partials/{0}.cshtml");
-            razor.AreaViewLocationFormats.Add("/Areas/{2}/Views/Shared/Partials/{0}.cshtml");
-
-            var existingViewLocations = razor.ViewLocationFormats.ToArray();
-
-            razor.ViewLocationFormats.Clear();
-            razor.ViewLocationFormats.Add("/Features/{1}/{0}.cshtml");
-            razor.ViewLocationFormats.Add("/Features/{1}/Partials/{0}.cshtml");
-            razor.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
-            razor.ViewLocationFormats.Add("/Features/Shared/Partials/{0}.cshtml");
-            foreach (var location in existingViewLocations)
-            { razor.ViewLocationFormats.Add(location); }
-            razor.ViewLocationFormats.Add("/Views/{1}/Partials/{0}.cshtml");
-            razor.ViewLocationFormats.Add("/Views/Shared/Partials/{0}.cshtml");
+            razor.AddPartialFolderViewLocations();
+            razor.AddRootFolderViewLocations();
+            razor.AddFeaturesFolderViewLocations();
         };
         public Action<RazorViewEngineOptions> Razor
         {
             get => this._razor;
-            set { this._razor = Guard.Null(nameof(value), value); }
+            set => this._razor = Guard.Null(nameof(value), value);
         }
 
         private Action<MvcViewOptions> _views = views =>
