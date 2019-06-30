@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Net.Http.Headers;
 using System;
 using ThoughtHaven.AspNetCore.Mvc.UI.Test.EmbeddedFiles;
 using Xunit;
@@ -29,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.UI
                 {
                     Assert.Throws<ArgumentNullException>("embeddedFileAssembly", () =>
                     {
-                        new UIStaticFileOptions(embeddedFileAssembly: null);
+                        new UIStaticFileOptions(embeddedFileAssembly: null!);
                     });
                 }
 
@@ -58,7 +56,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.UI
                 {
                     Assert.Throws<ArgumentNullException>("embeddedFileAssembly", () =>
                     {
-                        new UIStaticFileOptions(embeddedFileAssembly: null,
+                        new UIStaticFileOptions(embeddedFileAssembly: null!,
                             root: "wwwroot");
                     });
                 }
@@ -70,7 +68,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.UI
                     {
                         new UIStaticFileOptions(
                             embeddedFileAssembly: typeof(TestEmbeddedUI).Assembly,
-                            root: null);
+                            root: null!);
                     });
                 }
 
@@ -101,7 +99,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.UI
                 {
                     Assert.Throws<ArgumentNullException>("fileProvider", () =>
                     {
-                        new UIStaticFileOptions(fileProvider: null);
+                        new UIStaticFileOptions(fileProvider: null!);
                     });
                 }
 

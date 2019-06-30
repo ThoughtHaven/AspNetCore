@@ -6,7 +6,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public class TrackingConsentOptions
     {
-        public Action<AntiforgeryOptions> Antiforgery { get; set; }
-        public Action<CookiePolicyOptions> CookiePolicy { get; set; }
+        public Action<AntiforgeryOptions>? Antiforgery { get; set; }
+        public Action<CookiePolicyOptions>? CookiePolicy { get; set; }
     }
 }

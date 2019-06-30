@@ -1,14 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.103.0</Version>
+    <Version>0.104.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven AspNetCore Tracking</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>Manage user tracking consent, such as GDPR.</Description>
+    <LangVersion>8.0</LangVersion>
+    <!--<Nullable>enable</Nullable>-->
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
   <ItemGroup>

@@ -93,7 +93,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().Mvc = null;
+                        new MvcServiceOptions().Mvc = null!;
                     });
                 }
 
@@ -137,7 +137,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().Json = null;
+                        new MvcServiceOptions().Json = null!;
                     });
                 }
 
@@ -244,119 +244,6 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     Assert.Contains("/Features/{1}/{0}.cshtml",
                         options.ViewLocationFormats);
                 }
-
-                //[Fact]
-                //public void DefaultValue_ConfiguresAreaViewLocationFormats()
-                //{
-                //    var configure = new MvcServiceOptions();
-                //    var options = new RazorViewEngineOptions();
-
-                //    configure.Razor(options);
-
-                //    Assert.Equal(8, options.AreaViewLocationFormats.Count);
-                //    Assert.Equal("/Features/{2}/{1}/{0}.cshtml",
-                //        options.AreaViewLocationFormats[0]);
-                //    Assert.Equal("/Features/{2}/{1}/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[1]);
-                //    Assert.Equal("/Features/{2}/Shared/{0}.cshtml",
-                //        options.AreaViewLocationFormats[2]);
-                //    Assert.Equal("/Features/{2}/Shared/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[3]);
-                //    Assert.Equal("/Features/Shared/{0}.cshtml",
-                //        options.AreaViewLocationFormats[4]);
-                //    Assert.Equal("/Features/Shared/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[5]);
-                //    Assert.Equal("/Areas/{2}/Views/{1}/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[6]);
-                //    Assert.Equal("/Areas/{2}/Views/Shared/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[7]);
-                //}
-
-                //[Fact]
-                //public void ExistingAreaViewLocationFormats_MovesExistingAreaViewLocationsToAfterFeatures()
-                //{
-                //    var configure = new MvcServiceOptions();
-                //    var options = new RazorViewEngineOptions();
-                //    options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
-                //    options.AreaViewLocationFormats.Add(
-                //        "/Areas/{2}/Views/Shared/{0}.cshtml");
-
-                //    configure.Razor(options);
-
-                //    Assert.Equal(10, options.AreaViewLocationFormats.Count);
-                //    Assert.Equal("/Features/{2}/{1}/{0}.cshtml",
-                //        options.AreaViewLocationFormats[0]);
-                //    Assert.Equal("/Features/{2}/{1}/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[1]);
-                //    Assert.Equal("/Features/{2}/Shared/{0}.cshtml",
-                //        options.AreaViewLocationFormats[2]);
-                //    Assert.Equal("/Features/{2}/Shared/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[3]);
-                //    Assert.Equal("/Features/Shared/{0}.cshtml",
-                //        options.AreaViewLocationFormats[4]);
-                //    Assert.Equal("/Features/Shared/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[5]);
-                //    Assert.Equal("/Areas/{2}/Views/{1}/{0}.cshtml",
-                //        options.AreaViewLocationFormats[6]);
-                //    Assert.Equal("/Areas/{2}/Views/Shared/{0}.cshtml",
-                //        options.AreaViewLocationFormats[7]);
-                //    Assert.Equal("/Areas/{2}/Views/{1}/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[8]);
-                //    Assert.Equal("/Areas/{2}/Views/Shared/Partials/{0}.cshtml",
-                //        options.AreaViewLocationFormats[9]);
-                //}
-
-                //[Fact]
-                //public void DefaultValue_ConfiguresViewLocationFormats()
-                //{
-                //    var configure = new MvcServiceOptions();
-                //    var options = new RazorViewEngineOptions();
-
-                //    configure.Razor(options);
-
-                //    Assert.Equal(6, options.ViewLocationFormats.Count);
-                //    Assert.Equal("/Features/{1}/{0}.cshtml",
-                //        options.ViewLocationFormats[0]);
-                //    Assert.Equal("/Features/{1}/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[1]);
-                //    Assert.Equal("/Features/Shared/{0}.cshtml",
-                //        options.ViewLocationFormats[2]);
-                //    Assert.Equal("/Features/Shared/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[3]);
-                //    Assert.Equal("/Views/{1}/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[4]);
-                //    Assert.Equal("/Views/Shared/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[5]);
-                //}
-
-                //[Fact]
-                //public void ExistingViewLocationFormats_MovesExistingViewLocationsToAfterFeatures()
-                //{
-                //    var configure = new MvcServiceOptions();
-                //    var options = new RazorViewEngineOptions();
-                //    options.ViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
-                //    options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
-
-                //    configure.Razor(options);
-
-                //    Assert.Equal(8, options.ViewLocationFormats.Count);
-                //    Assert.Equal("/Features/{1}/{0}.cshtml",
-                //        options.ViewLocationFormats[0]);
-                //    Assert.Equal("/Features/{1}/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[1]);
-                //    Assert.Equal("/Features/Shared/{0}.cshtml",
-                //        options.ViewLocationFormats[2]);
-                //    Assert.Equal("/Features/Shared/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[3]);
-                //    Assert.Equal("/Views/{1}/{0}.cshtml",
-                //        options.ViewLocationFormats[4]);
-                //    Assert.Equal("/Views/Shared/{0}.cshtml",
-                //        options.ViewLocationFormats[5]);
-                //    Assert.Equal("/Views/{1}/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[6]);
-                //    Assert.Equal("/Views/Shared/Partials/{0}.cshtml",
-                //        options.ViewLocationFormats[7]);
-                //}
             }
 
             public class SetAccessor
@@ -366,7 +253,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().Razor = null;
+                        new MvcServiceOptions().Razor = null!;
                     });
                 }
 
@@ -406,7 +293,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().Views = null;
+                        new MvcServiceOptions().Views = null!;
                     });
                 }
 
@@ -447,7 +334,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().Routing = null;
+                        new MvcServiceOptions().Routing = null!;
                     });
                 }
 
@@ -484,7 +371,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("value", () =>
                     {
-                        new MvcServiceOptions().TrackingConsent = null;
+                        new MvcServiceOptions().TrackingConsent = null!;
                     });
                 }
 

@@ -32,7 +32,7 @@ namespace Microsoft.AspNetCore.Builder
 
         public class RewriteOptions
         {
-            public string IISUrlRewriteFilePath { get; set; }
+            public string? IISUrlRewriteFilePath { get; set; }
         }
     }
 }

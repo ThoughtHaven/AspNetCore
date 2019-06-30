@@ -19,7 +19,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.UI
                     Assert.Throws<ArgumentNullException>("app", () =>
                     {
                         MvcUIBuilderExtensions.UseUI(
-                            app: null,
+                            app: null!,
                             options: Options());
                     });
                 }
@@ -29,7 +29,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.UI
                 {
                     Assert.Throws<ArgumentNullException>("options", () =>
                     {
-                        App().UseUI(options: null);
+                        App().UseUI(options: null!);
                     });
                 }
 

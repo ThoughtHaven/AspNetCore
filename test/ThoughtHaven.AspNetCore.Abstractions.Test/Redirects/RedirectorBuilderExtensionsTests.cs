@@ -19,7 +19,7 @@ namespace Microsoft.AspNetCore.Builder
                     Assert.Throws<ArgumentNullException>("app", () =>
                     {
                         RedirectorBuilderExtensions.UseRedirector(
-                            app: null,
+                            app: null!,
                             redirects: Redirects());
                     });
                 }
@@ -31,7 +31,7 @@ namespace Microsoft.AspNetCore.Builder
                     {
                         RedirectorBuilderExtensions.UseRedirector(
                             app: App(),
-                            redirects: null);
+                            redirects: null!);
                     });
                 }
 
@@ -42,7 +42,7 @@ namespace Microsoft.AspNetCore.Builder
                     {
                         RedirectorBuilderExtensions.UseRedirector(
                             app: App(),
-                            redirects: new RedirectRoute[] { null });
+                            redirects: new RedirectRoute[] { null! });
                     });
                 }
 
@@ -68,7 +68,7 @@ namespace Microsoft.AspNetCore.Builder
                     Assert.Throws<ArgumentNullException>("redirect", () =>
                     {
                         RedirectorBuilderExtensions.BuildLocation(
-                            redirect: null,
+                            redirect: null!,
                             routeData: RouteData());
                     });
                 }
@@ -80,7 +80,7 @@ namespace Microsoft.AspNetCore.Builder
                     {
                         RedirectorBuilderExtensions.BuildLocation(
                             redirect: Redirect(),
-                            routeData: null);
+                            routeData: null!);
                     });
                 }
 

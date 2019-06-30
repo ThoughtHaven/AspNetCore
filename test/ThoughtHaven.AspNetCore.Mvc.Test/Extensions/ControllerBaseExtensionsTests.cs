@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.Mvc
                     Assert.Throws<ArgumentNullException>("controller", () =>
                     {
                         ControllerBaseExtensions.ViewExists(
-                            controller: null,
+                            controller: null!,
                             viewName: "ViewName");
                     });
                 }
@@ -30,7 +30,7 @@ namespace Microsoft.AspNetCore.Mvc
                     {
                         ControllerBaseExtensions.ViewExists(
                             controller: Controller(),
-                            viewName: null);
+                            viewName: null!);
                     });
                 }
 
@@ -98,9 +98,9 @@ namespace Microsoft.AspNetCore.Mvc
 
         private static FakeCompositeViewEngine ViewEngine() => new FakeCompositeViewEngine();
         private static FakeControllerBase Controller(
-            FakeCompositeViewEngine viewEngine = null)
+            FakeCompositeViewEngine? viewEngine = null)
         {
-            viewEngine = viewEngine ?? new FakeCompositeViewEngine();
+            viewEngine ??= new FakeCompositeViewEngine();
 
             var services = new ServiceCollection();
             services.AddSingleton<ICompositeViewEngine>(viewEngine);

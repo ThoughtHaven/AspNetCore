@@ -16,7 +16,7 @@ namespace Microsoft.AspNetCore.Builder
                 {
                     Assert.Throws<ArgumentNullException>("app", () =>
                     {
-                        TrackingConsentBuilderExtensions.UseTrackingConsent(app: null);
+                        TrackingConsentBuilderExtensions.UseTrackingConsent(app: null!);
                     });
                 }
 

@@ -18,7 +18,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("app", () =>
                     {
-                        ((IApplicationBuilder)null).UseThoughtHavenMvc(
+                        ((IApplicationBuilder)null!).UseThoughtHavenMvc(
                             environment: Environment(),
                             iisUrlRewriteFilePath: "some/path");
                     });
@@ -30,7 +30,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     Assert.Throws<ArgumentNullException>("environment", () =>
                     {
                         App().UseThoughtHavenMvc(
-                            environment: null,
+                            environment: null!,
                             iisUrlRewriteFilePath: "some/path");
                     });
                 }
@@ -42,7 +42,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     {
                         App().UseThoughtHavenMvc(
                             environment: Environment(),
-                            iisUrlRewriteFilePath: null);
+                            iisUrlRewriteFilePath: null!);
                     });
                 }
 
@@ -76,7 +76,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("app", () =>
                     {
-                        ((IApplicationBuilder)null).UseThoughtHavenMvc(
+                        ((IApplicationBuilder)null!).UseThoughtHavenMvc(
                             environment: Environment(),
                             options: Options());
                     });
@@ -88,7 +88,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     Assert.Throws<ArgumentNullException>("environment", () =>
                     {
                         App().UseThoughtHavenMvc(
-                            environment: null,
+                            environment: null!,
                             options: Options());
                     });
                 }

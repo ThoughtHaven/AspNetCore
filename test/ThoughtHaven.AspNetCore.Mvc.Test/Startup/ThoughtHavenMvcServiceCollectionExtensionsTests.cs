@@ -25,7 +25,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 {
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
-                        ((IServiceCollection)null).AddThoughtHavenMvc();
+                        ((IServiceCollection)null!).AddThoughtHavenMvc();
                     });
                 }
 
@@ -103,7 +103,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     services.AddThoughtHavenMvc(configure);
 
-                    var options = services.BuildServiceProvider()
+                    _ = services.BuildServiceProvider()
                         .GetRequiredService<IOptions<MvcOptions>>().Value;
 
                     Assert.True(configure.Mvc_Called);
@@ -130,8 +130,8 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     services.AddThoughtHavenMvc(configure);
 
-                    var options = services.BuildServiceProvider()
-                        .GetRequiredService<IOptions<MvcJsonOptions>>().Value;
+                    _ = services.BuildServiceProvider()
+                        .GetRequiredService<IOptions<MvcOptions>>().Value;
 
                     Assert.True(configure.Json_Called);
                 }
@@ -157,7 +157,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     services.AddThoughtHavenMvc(configure);
 
-                    var options = services.BuildServiceProvider()
+                    _ = services.BuildServiceProvider()
                         .GetRequiredService<IOptions<RazorViewEngineOptions>>().Value;
 
                     Assert.True(configure.Razor_Called);
@@ -184,7 +184,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     services.AddThoughtHavenMvc(configure);
 
-                    var options = services.BuildServiceProvider()
+                    _ = services.BuildServiceProvider()
                         .GetRequiredService<IOptions<MvcViewOptions>>().Value;
 
                     Assert.True(configure.Views_Called);
@@ -211,7 +211,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     services.AddThoughtHavenMvc(configure);
 
-                    var options = services.BuildServiceProvider()
+                    _ = services.BuildServiceProvider()
                         .GetRequiredService<IOptions<RouteOptions>>().Value;
 
                     Assert.True(configure.Routing_Called);

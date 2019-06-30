@@ -10,7 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class TrackingConsentServiceCollectionExtensions
     {
         public static IServiceCollection AddTrackingConsent(this IServiceCollection services,
-            TrackingConsentOptions options = null)
+            TrackingConsentOptions? options = null)
         {
             if (services == null) { throw new ArgumentNullException(nameof(services)); }
 

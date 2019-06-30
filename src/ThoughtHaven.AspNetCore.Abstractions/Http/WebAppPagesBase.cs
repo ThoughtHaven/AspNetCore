@@ -12,7 +12,7 @@ namespace ThoughtHaven.AspNetCore.Http
             this.BaseUri = Guard.Null(nameof(baseUri), baseUri);
         }
 
-        protected virtual Uri BuildUri(string path, QueryString query = default(QueryString))
+        protected virtual Uri BuildUri(string path, QueryString query = default)
         {
             if (path != string.Empty) { Guard.NullOrWhiteSpace(nameof(path), path); }
 
@@ -34,8 +34,7 @@ namespace ThoughtHaven.AspNetCore.Http
             return this.BuildUri(new PathString(path), query);
         }
 
-        protected virtual Uri BuildUri(PathString path,
-            QueryString query = default(QueryString))
+        protected virtual Uri BuildUri(PathString path, QueryString query = default)
         {
             var baseUri = this.BaseUri.ToString();
 

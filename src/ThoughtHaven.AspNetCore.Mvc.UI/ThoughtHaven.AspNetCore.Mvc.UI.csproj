@@ -3,12 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.102.0</Version>
+    <Version>0.103.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven AspNetCore Mvc UI</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>Helpers for registering embedded Razor UI and static files inside Mvc applications.</Description>
+    <LangVersion>8.0</LangVersion>
+    <!--<Nullable>enable</Nullable>-->
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
   <ItemGroup>

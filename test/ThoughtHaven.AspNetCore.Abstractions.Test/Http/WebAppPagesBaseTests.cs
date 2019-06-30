@@ -16,7 +16,7 @@ namespace ThoughtHaven.AspNetCore.Http
                 {
                     Assert.Throws<ArgumentNullException>("baseUri", () =>
                     {
-                        new FakeWebAppPagesBase(baseUri: null);
+                        new FakeWebAppPagesBase(baseUri: null!);
                     });
                 }
             }
@@ -31,7 +31,7 @@ namespace ThoughtHaven.AspNetCore.Http
                 {
                     Assert.Throws<ArgumentNullException>("path", () =>
                     {
-                        Pages().BuildUri(path: (string)null);
+                        Pages().BuildUri(path: (string)null!);
                     });
                 }
 

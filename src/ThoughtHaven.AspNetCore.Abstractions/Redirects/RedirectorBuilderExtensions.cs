@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.AspNetCore.Routing;
 using System.Threading.Tasks;
 using ThoughtHaven;
 using ThoughtHaven.AspNetCore.Redirects;

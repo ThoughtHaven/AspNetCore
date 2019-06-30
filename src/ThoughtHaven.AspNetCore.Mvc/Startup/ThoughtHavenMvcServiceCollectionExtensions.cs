@@ -9,11 +9,11 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class ThoughtHavenMvcServiceCollectionExtensions
     {
         public static IMvcBuilder AddThoughtHavenMvc(this IServiceCollection services,
-            MvcServiceOptions options = null)
+            MvcServiceOptions? options = null)
         {
             Guard.Null(nameof(services), services);
 
-            options = options ?? new MvcServiceOptions();
+            options ??= new MvcServiceOptions();
 
             services.TryAddSingleton<SystemClock>();
 

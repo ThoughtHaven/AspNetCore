@@ -15,7 +15,7 @@ namespace ThoughtHaven.AspNetCore.Redirects
                     Assert.Throws<ArgumentNullException>("template", () =>
                     {
                         new RedirectRoute(
-                            template: null,
+                            template: null!,
                             location: "/location");
                     });
                 }
@@ -49,7 +49,7 @@ namespace ThoughtHaven.AspNetCore.Redirects
                     {
                         new RedirectRoute(
                             template: "/template",
-                            location: null);
+                            location: null!);
                     });
                 }
 

@@ -21,7 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("services", () =>
                     {
                         TrackingConsentServiceCollectionExtensions.AddTrackingConsent(
-                            services: null);
+                            services: null!);
                     });
                 }
 

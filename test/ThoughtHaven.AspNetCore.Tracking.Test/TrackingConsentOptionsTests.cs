@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 [Fact]
                 public void WhenCalled_UpdatesValue()
                 {
-                    void action(AntiforgeryOptions o) { }
+                    static void action(AntiforgeryOptions o) { }
 
                     var options = new TrackingConsentOptions()
                     {
@@ -50,7 +50,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 [Fact]
                 public void WhenCalled_UpdatesValue()
                 {
-                    void action(CookiePolicyOptions o) { }
+                    static void action(CookiePolicyOptions o) { }
 
                     var options = new TrackingConsentOptions()
                     {

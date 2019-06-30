@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("razor", () =>
                     {
                         RazorViewEngineOptionsExtensions.AddPartialFolderViewLocations(
-                            razor: null);
+                            razor: null!);
                     });
                 }
 
@@ -62,7 +62,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("razor", () =>
                     {
                         RazorViewEngineOptionsExtensions.AddRootFolderViewLocations(
-                            razor: null);
+                            razor: null!);
                     });
                 }
 
@@ -120,7 +120,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Assert.Throws<ArgumentNullException>("razor", () =>
                     {
                         RazorViewEngineOptionsExtensions.AddFeaturesFolderViewLocations(
-                            razor: null);
+                            razor: null!);
                     });
                 }
 

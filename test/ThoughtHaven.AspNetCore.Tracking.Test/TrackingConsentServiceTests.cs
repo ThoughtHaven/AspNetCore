@@ -26,7 +26,7 @@ namespace ThoughtHaven.AspNetCore.Tracking
                 {
                     Assert.Throws<ArgumentNullException>("httpContextAccessor", () =>
                     {
-                        new TrackingConsentService(httpContextAccessor: null);
+                        new TrackingConsentService(httpContextAccessor: null!);
                     });
                 }
             }
@@ -40,7 +40,7 @@ namespace ThoughtHaven.AspNetCore.Tracking
                 public async Task HttpContextHasNoITrackingConsentFeature_ReturnsFalse()
                 {
                     var service = new TrackingConsentService(HttpContextAccessor(
-                        trackingFeature: null));
+                        trackingFeature: null!));
 
                     Assert.False(await service.CanTrack());
                 }
@@ -78,7 +78,7 @@ namespace ThoughtHaven.AspNetCore.Tracking
                 {
                     var exception = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
                     {
-                        await Service(HttpContextAccessor(trackingFeature: null))
+                        await Service(HttpContextAccessor(trackingFeature: null!))
                             .GrantConsent();
                     });
 
@@ -107,7 +107,7 @@ namespace ThoughtHaven.AspNetCore.Tracking
                 {
                     var exception = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
                     {
-                        await Service(HttpContextAccessor(trackingFeature: null))
+                        await Service(HttpContextAccessor(trackingFeature: null!))
                             .WithdrawConsent();
                     });
 
@@ -130,10 +130,10 @@ namespace ThoughtHaven.AspNetCore.Tracking
         private static FakeTrackingConsentFeature TrackingFeature() =>
             new FakeTrackingConsentFeature();
         private static FakeHttpContextAccessor HttpContextAccessor(
-            FakeTrackingConsentFeature trackingFeature = null) =>
+            FakeTrackingConsentFeature? trackingFeature = null) =>
             new FakeHttpContextAccessor(trackingFeature);
         private static TrackingConsentService Service(
-            FakeHttpContextAccessor httpContextAccessor = null) =>
+            FakeHttpContextAccessor? httpContextAccessor = null) =>
             new TrackingConsentService(httpContextAccessor ?? HttpContextAccessor());
     }
 }

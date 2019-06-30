@@ -15,7 +15,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                 Assert.Throws<ArgumentNullException>("value", () =>
                 {
-                    options.StatusCodePagePathFormat = null;
+                    options.StatusCodePagePathFormat = null!;
                 });
             }
 

@@ -11,7 +11,7 @@ namespace Microsoft.AspNetCore.Builder
     {
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
             IHostingEnvironment environment, string iisUrlRewriteFilePath,
-            Action<IRouteBuilder> configureRoutes = null)
+            Action<IRouteBuilder>? configureRoutes = null)
         {
             Guard.Null(nameof(app), app);
             Guard.Null(nameof(environment), environment);
@@ -24,13 +24,13 @@ namespace Microsoft.AspNetCore.Builder
         }
 
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
-            IHostingEnvironment environment, MvcBuilderOptions options = null,
-            Action<IRouteBuilder> configureRoutes = null)
+            IHostingEnvironment environment, MvcBuilderOptions? options = null,
+            Action<IRouteBuilder>? configureRoutes = null)
         {
             Guard.Null(nameof(app), app);
             Guard.Null(nameof(environment), environment);
 
-            options = options ?? new MvcBuilderOptions();
+            options ??= new MvcBuilderOptions();
 
             if (environment.IsDevelopment())
             {

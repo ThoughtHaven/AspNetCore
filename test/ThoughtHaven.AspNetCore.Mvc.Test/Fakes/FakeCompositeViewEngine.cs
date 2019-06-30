@@ -9,8 +9,8 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
 {
     public class FakeCompositeViewEngine : ICompositeViewEngine
     {
-        public ActionContext FindView_InputContext;
-        public string FindView_InputViewName;
+        public ActionContext? FindView_InputContext;
+        public string? FindView_InputViewName;
         public bool FindView_IsMainPage;
         public ViewEngineResult FindView_Output = ViewEngineResult.Found("View", new FakeView());
         public ViewEngineResult FindView(ActionContext context, string viewName,

@@ -8,10 +8,10 @@ namespace ThoughtHaven.AspNetCore.Fakes
     {
         public FakeWebAppPagesBase(Uri baseUri) : base(baseUri) { }
 
-        new public Uri BuildUri(string path, QueryString query = default(QueryString)) =>
+        new public Uri BuildUri(string path, QueryString query = default) =>
             base.BuildUri(path, query);
 
-        new public Uri BuildUri(PathString path, QueryString query = default(QueryString)) =>
+        new public Uri BuildUri(PathString path, QueryString query = default) =>
             base.BuildUri(path, query);
     }
 }
