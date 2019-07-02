@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
-using System;
+﻿using System;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Mvc.Startup
+namespace Microsoft.AspNetCore.Builder
 {
     public class MvcBuilderOptionsTests
     {
@@ -81,15 +80,6 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     Assert.NotNull(options.StatusCodePagePathFormat);
                     Assert.Equal("/errors/statuscode/{0}", options.StatusCodePagePathFormat);
-                }
-
-                [Fact]
-                public void WhenCalled_SetsStaticFiles()
-                {
-                    var options = Options();
-
-                    Assert.NotNull(options.StaticFiles);
-                    Assert.NotNull(options.StaticFiles.OnPrepareResponse);
                 }
 
                 [Fact]

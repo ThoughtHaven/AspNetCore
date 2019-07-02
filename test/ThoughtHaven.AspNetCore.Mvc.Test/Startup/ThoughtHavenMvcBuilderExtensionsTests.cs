@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Builder.Internal;
+﻿using Microsoft.AspNetCore.Builder.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using ThoughtHaven.AspNetCore.Mvc.Fakes;
 using Xunit;
 
-namespace ThoughtHaven.AspNetCore.Mvc.Startup
+namespace Microsoft.AspNetCore.Builder
 {
     public class ThoughtHavenMvcBuilderExtensionsTests
     {
@@ -102,7 +101,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
             services.AddThoughtHavenMvc();
 
             var app = new ApplicationBuilder(services.BuildServiceProvider());
-            
+
             return app;
         }
         private static FakeHostingEnvironment Environment() => new FakeHostingEnvironment();

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -64,11 +66,30 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             routing.AppendTrailingSlash = false;
             routing.LowercaseUrls = true;
+            routing.LowercaseQueryStrings = false;
         };
         public Action<RouteOptions> Routing
         {
             get => this._routing;
             set => this._routing = Guard.Null(nameof(value), value);
+        }
+
+        private Action<StaticFileOptions> _staticFiles = staticFiles =>
+        {
+            var prepareResponse = staticFiles.OnPrepareResponse;
+
+            staticFiles.OnPrepareResponse = context =>
+            {
+                prepareResponse?.Invoke(context);
+
+                context.Context.Response.Headers[HeaderNames.CacheControl] =
+                    "public,max-age=31536000";
+            };
+        };
+        public Action<StaticFileOptions> StaticFiles
+        {
+            get => this._staticFiles;
+            set => this._staticFiles = Guard.Null(nameof(value), value);
         }
 
         private TrackingConsentOptions _trackingConsent = new TrackingConsentOptions();

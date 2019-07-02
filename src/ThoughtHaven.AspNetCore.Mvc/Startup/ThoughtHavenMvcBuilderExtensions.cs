@@ -55,7 +55,7 @@ namespace Microsoft.AspNetCore.Builder
 
             app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute(options.StatusCodePagePathFormat);
-            app.UseStaticFiles(options.StaticFiles);
+            app.UseStaticFiles();
             app.UseTrackingConsent();
 
             return configureRoutes != null ? app.UseMvc(configureRoutes) : app.UseMvc();

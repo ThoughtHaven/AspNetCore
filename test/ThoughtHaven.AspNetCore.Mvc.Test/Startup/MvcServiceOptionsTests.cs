@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -324,6 +328,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     Assert.False(options.AppendTrailingSlash);
                     Assert.True(options.LowercaseUrls);
+                    Assert.False(options.LowercaseQueryStrings);
                 }
             }
 
@@ -348,6 +353,83 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     Assert.Equal(options, configure.Routing);
                 }
+            }
+        }
+
+        public class StaticFilesProperty
+        {
+            public class GetAccessor
+            {
+                [Fact]
+                public void DefaultValue_ConfiguresOptions()
+                {
+                    var configure = new MvcServiceOptions();
+                    var options = Options();
+                    var responseContext = ResponseContext();
+
+                    configure.StaticFiles(options);
+
+                    options.OnPrepareResponse(responseContext);
+
+                    Assert.Equal("public,max-age=31536000",
+                        responseContext.Context.Response.Headers[HeaderNames.CacheControl]);
+                }
+
+                [Fact]
+                public void DefaultValue_PreservesExistingAction()
+                {
+                    var configure = new MvcServiceOptions();
+                    var onPrepareResponseCalled = false;
+                    var options = Options();
+                    options.OnPrepareResponse = context =>
+                    {
+                        onPrepareResponseCalled = true;
+                    };
+                    var responseContext = ResponseContext();
+
+                    configure.StaticFiles(options);
+
+                    options.OnPrepareResponse(responseContext);
+
+                    Assert.True(onPrepareResponseCalled);
+                    Assert.Equal("public,max-age=31536000",
+                        responseContext.Context.Response.Headers[HeaderNames.CacheControl]);
+                }
+            }
+
+            public class SetAccessor
+            {
+                [Fact]
+                public void NullValue_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("value", () =>
+                    {
+                        new MvcServiceOptions().StaticFiles = null!;
+                    });
+                }
+
+                [Fact]
+                public void WhenCalled_SetsValue()
+                {
+                    var configure = new MvcServiceOptions();
+                    var options = new Action<StaticFileOptions>(o => { });
+
+                    configure.StaticFiles = options;
+
+                    Assert.Equal(options, configure.StaticFiles);
+                }
+            }
+
+            private static StaticFileOptions Options() => new StaticFileOptions();
+            private static StaticFileResponseContext ResponseContext()
+            {
+                var context = new StaticFileResponseContext();
+
+                var type = context.GetType();
+                var property = type.GetProperty(nameof(context.Context));
+                property.SetValue(context, new DefaultHttpContext(), null);
+
+                return context;
             }
         }
 

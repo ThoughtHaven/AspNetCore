@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Microsoft.AspNetCore.Mvc
 {
-    public class ControllerBaseExtensionsTests
+    public class ControllerExtensionsTests
     {
         public class ViewExistsMethod
         {
@@ -17,7 +17,7 @@ namespace Microsoft.AspNetCore.Mvc
                 {
                     Assert.Throws<ArgumentNullException>("controller", () =>
                     {
-                        ControllerBaseExtensions.ViewExists(
+                        ControllerExtensions.ViewExists(
                             controller: null!,
                             viewName: "ViewName");
                     });
@@ -28,7 +28,7 @@ namespace Microsoft.AspNetCore.Mvc
                 {
                     Assert.Throws<ArgumentNullException>("viewName", () =>
                     {
-                        ControllerBaseExtensions.ViewExists(
+                        ControllerExtensions.ViewExists(
                             controller: Controller(),
                             viewName: null!);
                     });
@@ -39,7 +39,7 @@ namespace Microsoft.AspNetCore.Mvc
                 {
                     Assert.Throws<ArgumentException>("viewName", () =>
                     {
-                        ControllerBaseExtensions.ViewExists(
+                        ControllerExtensions.ViewExists(
                             controller: Controller(),
                             viewName: "");
                     });
@@ -50,7 +50,7 @@ namespace Microsoft.AspNetCore.Mvc
                 {
                     Assert.Throws<ArgumentException>("viewName", () =>
                     {
-                        ControllerBaseExtensions.ViewExists(
+                        ControllerExtensions.ViewExists(
                             controller: Controller(),
                             viewName: " ");
                     });
@@ -97,15 +97,14 @@ namespace Microsoft.AspNetCore.Mvc
         }
 
         private static FakeCompositeViewEngine ViewEngine() => new FakeCompositeViewEngine();
-        private static FakeControllerBase Controller(
-            FakeCompositeViewEngine? viewEngine = null)
+        private static FakeController Controller(FakeCompositeViewEngine? viewEngine = null)
         {
             viewEngine ??= new FakeCompositeViewEngine();
 
             var services = new ServiceCollection();
             services.AddSingleton<ICompositeViewEngine>(viewEngine);
 
-            return new FakeControllerBase(services);
+            return new FakeController(services);
         }
     }
 }

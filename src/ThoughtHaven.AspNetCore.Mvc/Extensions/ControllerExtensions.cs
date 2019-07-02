@@ -4,9 +4,9 @@ using ThoughtHaven;
 
 namespace Microsoft.AspNetCore.Mvc
 {
-    public static class ControllerBaseExtensions
+    public static class ControllerExtensions
     {
-        public static bool ViewExists(this ControllerBase controller, string viewName)
+        public static bool ViewExists(this Controller controller, string viewName)
         {
             Guard.Null(nameof(controller), controller);
             Guard.NullOrWhiteSpace(nameof(viewName), viewName);

@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ThoughtHaven.AspNetCore.Mvc.Fakes
 {
-    public class FakeControllerBase : ControllerBase
+    public class FakeController : Controller
     {
-        public FakeControllerBase(ServiceCollection services)
+        public FakeController(ServiceCollection services)
         {
             this.ControllerContext = new ControllerContext()
             {

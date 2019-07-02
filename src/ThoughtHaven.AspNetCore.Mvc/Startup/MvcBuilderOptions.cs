@@ -1,5 +1,4 @@
 ﻿using ThoughtHaven;
-using static Microsoft.Net.Http.Headers.HeaderNames;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -18,15 +17,6 @@ namespace Microsoft.AspNetCore.Builder
             set => this._statusCodePagePathFormat = Guard.NullOrWhiteSpace(nameof(value),
                 value);
         }
-
-        public virtual StaticFileOptions StaticFiles { get; } =
-            new StaticFileOptions()
-            {
-                OnPrepareResponse = ctx =>
-                {
-                    ctx.Context.Response.Headers[CacheControl] = "public,max-age=31536000";
-                }
-            };
 
         public RewriteOptions Rewrite { get; } = new RewriteOptions();
 

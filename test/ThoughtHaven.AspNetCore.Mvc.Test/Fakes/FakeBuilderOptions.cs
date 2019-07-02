@@ -37,16 +37,5 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
             }
             set { base.StatusCodePagePathFormat = value; }
         }
-
-        public bool GetStaticFiles_Called;
-        public override StaticFileOptions StaticFiles
-        {
-            get
-            {
-                GetStaticFiles_Called = true;
-
-                return base.StaticFiles;
-            }
-        }
     }
 }

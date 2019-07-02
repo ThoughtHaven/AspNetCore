@@ -8,9 +8,9 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
         public bool Json_Called;
         public bool Razor_Called;
         public bool Views_Called;
-        public bool Antiforgery_Called;
+        //public bool Antiforgery_Called;
         public bool Routing_Called;
-        public bool CookiePolicy_Called;
+        //public bool CookiePolicy_Called;
 
         public FakeMvcServiceOptions()
         {

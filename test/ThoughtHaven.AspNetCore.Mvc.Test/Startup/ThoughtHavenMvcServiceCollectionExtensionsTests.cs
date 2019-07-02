@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -80,6 +79,19 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
 
                     Assert.NotNull(service);
                     Assert.IsType<TrackingConsentService>(service);
+                }
+
+                [Fact]
+                public void WhenCalled_CallsPostConfigureStaticFiles()
+                {
+                    var services = Services();
+
+                    services.AddThoughtHavenMvc();
+
+                    var service = services.BuildServiceProvider()
+                        .GetRequiredService<IPostConfigureOptions<StaticFileOptions>>();
+
+                    Assert.NotNull(service);
                 }
 
                 [Fact]

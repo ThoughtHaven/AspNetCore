@@ -23,6 +23,8 @@ namespace Microsoft.Extensions.DependencyInjection
             
             services.AddTrackingConsent(options.TrackingConsent);
 
+            services.PostConfigure(options.StaticFiles);
+
             var mvc = services.AddMvc(options.Mvc)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options.Json)

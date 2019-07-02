@@ -8,7 +8,7 @@
     <Product>Thought Haven AspNetCore Mvc</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>A slightly more opinionated approach to AspNetCore MVC with more secure defaults and common best practices.</Description>
-    <Version>0.121.0</Version>
+    <Version>0.122.0</Version>
     <LangVersion>8.0</LangVersion>
     <!--<Nullable>enable</Nullable>-->
     <NullableContextOptions>enable</NullableContextOptions>
