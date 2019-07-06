@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <RootNamespace>ThoughtHaven.AspNetCore.Mvc.UI</RootNamespace>
+    <RootNamespace>ThoughtHaven.AspNetCore.Mvc.Ui</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <!--<Nullable>enable</Nullable>-->
     <NullableContextOptions>enable</NullableContextOptions>

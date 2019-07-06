@@ -1,4 +1,4 @@
-﻿namespace ThoughtHaven.AspNetCore.Mvc.UI.Test.EmbeddedFiles
+﻿namespace ThoughtHaven.AspNetCore.Mvc.Ui.Test.EmbeddedFiles
 {
-    public class TestEmbeddedUI { }
+    public class TestEmbeddedUi { }
 }
