@@ -118,7 +118,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
                     var postContent = output.PostContent.GetContent();
 
                     Assert.Equal(
-                        $@"<script class=""test"" src=""https://www.google.com/recaptcha/api.js"" async defer></script><div class=""g-recaptcha"" data-sitekey=""{options.V2CheckboxKeys.SiteKey}""></div>",
+                        $@"<script src=""https://www.google.com/recaptcha/api.js"" async defer></script><div class=""g-recaptcha"" data-sitekey=""{options.V2CheckboxKeys.SiteKey}""></div>",
                         postContent);
                 }
             }

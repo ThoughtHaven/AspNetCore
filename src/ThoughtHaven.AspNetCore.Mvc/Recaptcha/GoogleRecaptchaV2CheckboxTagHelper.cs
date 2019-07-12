@@ -27,7 +27,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
                 output.TagName = null;
 
                 output.PostContent.AppendHtml(
-                    $@"<script class=""test"" src=""https://www.google.com/recaptcha/api.js"" async defer></script>");
+                    $@"<script src=""https://www.google.com/recaptcha/api.js"" async defer></script>");
                 output.PostContent.AppendHtml(
                     $@"<div class=""g-recaptcha"" data-sitekey=""{this.Options.V2CheckboxKeys.SiteKey}""></div>");
             }
