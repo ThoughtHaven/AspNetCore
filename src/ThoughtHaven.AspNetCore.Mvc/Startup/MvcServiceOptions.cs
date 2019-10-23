@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
+using System.Text.Json;
 using ThoughtHaven;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -27,14 +26,13 @@ namespace Microsoft.Extensions.DependencyInjection
             set => this._mvc = Guard.Null(nameof(value), value);
         }
 
-        private Action<MvcJsonOptions> _json = json =>
+        private Action<JsonOptions> _json = json =>
         {
-            json.SerializerSettings.Formatting = Formatting.None;
-            json.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            json.SerializerSettings.ContractResolver =
-                new CamelCasePropertyNamesContractResolver();
+            json.JsonSerializerOptions.WriteIndented = false;
+            json.JsonSerializerOptions.IgnoreNullValues = true;
+            json.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
         };
-        public Action<MvcJsonOptions> Json
+        public Action<JsonOptions> Json
         {
             get => this._json;
             set => this._json = Guard.Null(nameof(value), value);

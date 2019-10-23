@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Linq;
+using System.Text.Json;
+using ThoughtHaven.AspNetCore.Mvc.Fakes;
 using Xunit;
 
 namespace ThoughtHaven.AspNetCore.Mvc.Startup
@@ -122,15 +124,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void DefaultValue_ConfiguresOptions()
                 {
                     var configure = new MvcServiceOptions();
-                    var options = new MvcJsonOptions();
+                    var options = new JsonOptions();
 
                     configure.Json(options);
 
-                    Assert.Equal(Formatting.None, options.SerializerSettings.Formatting);
-                    Assert.Equal(NullValueHandling.Ignore,
-                        options.SerializerSettings.NullValueHandling);
-                    Assert.True(options.SerializerSettings.ContractResolver is
-                        CamelCasePropertyNamesContractResolver);
+                    Assert.False(options.JsonSerializerOptions.WriteIndented);
+                    Assert.True(options.JsonSerializerOptions.IgnoreNullValues);
+                    Assert.Equal(JsonNamingPolicy.CamelCase,
+                        options.JsonSerializerOptions.PropertyNamingPolicy);
                 }
             }
 
@@ -149,7 +150,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                 public void WhenCalled_SetsValue()
                 {
                     var configure = new MvcServiceOptions();
-                    var options = new Action<MvcJsonOptions>(o => { });
+                    var options = new Action<JsonOptions>(o => { });
 
                     configure.Json = options;
 
@@ -423,11 +424,12 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
             private static StaticFileOptions Options() => new StaticFileOptions();
             private static StaticFileResponseContext ResponseContext()
             {
-                var context = new StaticFileResponseContext();
+                var context = new StaticFileResponseContext(new DefaultHttpContext(),
+                    file: new FakeFileInfo());
 
-                var type = context.GetType();
-                var property = type.GetProperty(nameof(context.Context));
-                property.SetValue(context, new DefaultHttpContext(), null);
+                //var type = context.GetType();
+                //var property = type.GetProperty(nameof(context.Context));
+                //property!.SetValue(context, new DefaultHttpContext(), null);
 
                 return context;
             }

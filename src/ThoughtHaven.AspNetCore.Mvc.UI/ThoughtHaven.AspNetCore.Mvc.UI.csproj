@@ -1,29 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>ThoughtHaven.AspNetCore.Mvc.Ui</RootNamespace>
+    <Version>0.200.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.104.0</Version>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Product>Thought Haven AspNetCore Mvc UI</Product>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Description>Helpers for registering embedded Razor UI and static files inside Mvc applications.</Description>
     <LangVersion>8.0</LangVersion>
-    <!--<Nullable>enable</Nullable>-->
-    <NullableContextOptions>enable</NullableContextOptions>
-    <RootNamespace>ThoughtHaven.AspNetCore.Mvc.Ui</RootNamespace>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.2.0" />
-    <PackageReference Include="ThoughtHaven.Guards" Version="0.102.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ThoughtHaven.AspNetCore.Abstractions\ThoughtHaven.AspNetCore.Abstractions.csproj" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.0.0" />
+    <PackageReference Include="ThoughtHaven.Guards" Version="0.200.0" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Primitives;
 
 namespace ThoughtHaven.AspNetCore.Mvc.Fakes
 {
-    public class FakeHostingEnvironment : IHostingEnvironment
+    public class FakeWebHostEnvironment : IWebHostEnvironment
     {
         public string EnvironmentName { get; set; } = "Test";
         public string ApplicationName { get; set; } = "App";

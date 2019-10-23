@@ -16,7 +16,7 @@ namespace ThoughtHaven.AspNetCore.Http
         {
             if (path != string.Empty) { Guard.NullOrWhiteSpace(nameof(path), path); }
 
-            if (path.EndsWith("/")) { path = path.Substring(0, path.Length - 1); }
+            if (path.EndsWith("/")) { path = path[0..^1]; }
 
             var queryIndex = path.IndexOf("?");
             if (queryIndex != -1)
@@ -40,7 +40,7 @@ namespace ThoughtHaven.AspNetCore.Http
 
             if (baseUri.EndsWith("/"))
             {
-                baseUri = baseUri.Substring(0, baseUri.Length - 1);
+                baseUri = baseUri[0..^1];
             }
 
             return new Uri($"{baseUri}{path}{query}");

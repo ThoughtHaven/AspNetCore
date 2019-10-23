@@ -10,10 +10,10 @@ namespace ThoughtHaven.AspNetCore.Mvc.Ui
     public class UiPostConfigureStaticFileOptions<TAssembly>
         : IPostConfigureOptions<StaticFileOptions>
     {
-        protected IHostingEnvironment Environment { get; }
+        protected IWebHostEnvironment Environment { get; }
         protected virtual string ManifestEmbeddedFileRoot { get; } = "wwwroot";
 
-        public UiPostConfigureStaticFileOptions(IHostingEnvironment environment)
+        public UiPostConfigureStaticFileOptions(IWebHostEnvironment environment)
         {
             this.Environment = Guard.Null(nameof(environment), environment);
         }

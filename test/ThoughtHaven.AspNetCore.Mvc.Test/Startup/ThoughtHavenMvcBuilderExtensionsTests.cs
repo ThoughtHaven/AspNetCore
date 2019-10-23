@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder.Internal;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using ThoughtHaven.AspNetCore.Mvc.Fakes;
 using Xunit;
@@ -104,7 +103,7 @@ namespace Microsoft.AspNetCore.Builder
 
             return app;
         }
-        private static FakeHostingEnvironment Environment() => new FakeHostingEnvironment();
+        private static FakeWebHostEnvironment Environment() => new FakeWebHostEnvironment();
         private static FakeBuilderOptions Options() => new FakeBuilderOptions();
     }
 }

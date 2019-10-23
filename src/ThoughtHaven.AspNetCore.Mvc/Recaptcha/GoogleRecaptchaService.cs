@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -91,8 +91,10 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
                 return new UserMessage(errorMessage);
             }
 
-            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            return JsonConvert.DeserializeObject<TResponse>(json);
+            using var json = await response.Content.ReadAsStreamAsync()
+                .ConfigureAwait(false);
+            
+            return await JsonSerializer.DeserializeAsync<TResponse>(json);
         }
 
         protected class V2ApiResponseModel

@@ -35,11 +35,11 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
                     output.Attributes.SetAttribute("id", formId);
                 }
 
-                output.PostContent.AppendHtml(this.CaptchaHtml(context, formId));
+                output.PostContent.AppendHtml(this.CaptchaHtml(formId));
             }
         }
 
-        private string CaptchaHtml(TagHelperContext context, string formId) =>
+        private string CaptchaHtml(string formId) =>
 $@"
 <script src='https://www.google.com/recaptcha/api.js?render={this.Options.V3Keys.SiteKey}'></script>
 <script>

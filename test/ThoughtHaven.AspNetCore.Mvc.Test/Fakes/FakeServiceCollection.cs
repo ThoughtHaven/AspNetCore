@@ -12,8 +12,9 @@ namespace ThoughtHaven.AspNetCore.Mvc.Fakes
         {
             this.AddSingleton<ILoggerFactory, FakeLoggerFactory>();
             this.AddSingleton<ObjectPoolProvider, FakeObjectPoolProvider>();
-            this.AddSingleton<IHostingEnvironment, FakeHostingEnvironment>();
+            this.AddSingleton<IWebHostEnvironment, FakeWebHostEnvironment>();
             this.AddSingleton<DiagnosticSource, FakeDiagnosticSource>();
+            this.AddSingleton(new DiagnosticListener("Test"));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Ui
                 {
                     Assert.Throws<ArgumentNullException>("environment", () =>
                     {
-                        new UiPostConfigureStaticFileOptions<FakeHostingEnvironment>(
+                        new UiPostConfigureStaticFileOptions<FakeWebHostEnvironment>(
                             environment: null!);
                     });
                 }
@@ -82,9 +82,9 @@ namespace ThoughtHaven.AspNetCore.Mvc.Ui
             }
         }
 
-        private static FakeHostingEnvironment Environment() => new FakeHostingEnvironment();
+        private static FakeWebHostEnvironment Environment() => new FakeWebHostEnvironment();
         private static UiPostConfigureStaticFileOptions<TestEmbeddedUi> Options(
-            FakeHostingEnvironment? environment = null) =>
+            FakeWebHostEnvironment? environment = null) =>
             new UiPostConfigureStaticFileOptions<TestEmbeddedUi>(
                 environment ?? Environment());
     }

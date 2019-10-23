@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using ThoughtHaven;
@@ -10,8 +11,8 @@ namespace Microsoft.AspNetCore.Builder
     public static class ThoughtHavenMvcBuilderExtensions
     {
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
-            IHostingEnvironment environment, string iisUrlRewriteFilePath,
-            Action<IRouteBuilder>? configureRoutes = null)
+            IWebHostEnvironment environment, string iisUrlRewriteFilePath,
+            Action<IEndpointRouteBuilder>? configureRoutes = null)
         {
             Guard.Null(nameof(app), app);
             Guard.Null(nameof(environment), environment);
@@ -24,8 +25,8 @@ namespace Microsoft.AspNetCore.Builder
         }
 
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
-            IHostingEnvironment environment, MvcBuilderOptions? options = null,
-            Action<IRouteBuilder>? configureRoutes = null)
+            IWebHostEnvironment environment, MvcBuilderOptions? options = null,
+            Action<IEndpointRouteBuilder>? configureRoutes = null)
         {
             Guard.Null(nameof(app), app);
             Guard.Null(nameof(environment), environment);
@@ -47,18 +48,34 @@ namespace Microsoft.AspNetCore.Builder
                 string baseDir = environment.ContentRootPath;
                 var filePath = Path.Combine(baseDir, options.Rewrite.IISUrlRewriteFilePath);
 
-                using (var rewrite = File.OpenText(filePath))
-                {
-                    app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rewrite));
-                }
+                using var rewrite = File.OpenText(filePath);
+
+                app.UseRewriter(new RewriteOptions().AddIISUrlRewrite(rewrite));
             }
 
             app.UseHttpsRedirection();
             app.UseStatusCodePagesWithReExecute(options.StatusCodePagePathFormat);
             app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseTrackingConsent();
 
-            return configureRoutes != null ? app.UseMvc(configureRoutes) : app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                if (configureRoutes == null)
+                {
+                    endpoints.MapControllers();
+                }
+                else
+                {
+                    configureRoutes(endpoints);
+                }
+            });
+
+            return app;
         }
     }
 }

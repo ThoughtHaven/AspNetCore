@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder.Internal;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using ThoughtHaven.AspNetCore.Redirects;

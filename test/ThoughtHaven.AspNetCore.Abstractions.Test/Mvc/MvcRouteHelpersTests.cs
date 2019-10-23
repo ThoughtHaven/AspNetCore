@@ -67,9 +67,9 @@ namespace ThoughtHaven.AspNetCore.Mvc
                     var result = MvcRouteHelpers.Defaults<FakeController>(action);
 
                     Assert.Equal("Fake",
-                        result.GetType().GetProperty("controller").GetValue(result, null));
+                        result.GetType().GetProperty("controller")!.GetValue(result, null));
                     Assert.Equal(action,
-                        result.GetType().GetProperty("action").GetValue(result, null));
+                        result.GetType().GetProperty("action")!.GetValue(result, null));
                 }
             }
         }

@@ -129,7 +129,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Startup
                     services.AddThoughtHavenMvc();
 
                     var options = services.BuildServiceProvider()
-                        .GetRequiredService<IOptions<MvcJsonOptions>>().Value;
+                        .GetRequiredService<IOptions<JsonOptions>>().Value;
 
                     Assert.NotNull(options);
                 }

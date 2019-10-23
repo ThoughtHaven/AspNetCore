@@ -20,13 +20,13 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
+
             services.AddTrackingConsent(options.TrackingConsent);
 
             services.PostConfigure(options.StaticFiles);
 
-            var mvc = services.AddMvc(options.Mvc)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            var mvc = services.AddControllersWithViews(options.Mvc)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(options.Json)
                 .AddRazorOptions(options.Razor)
                 .AddViewOptions(options.Views);
