@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.200.0</Version>
+    <Authors>Thought Haven, Brendan Ridenour</Authors>
+    <Company>Thought Haven</Company>
+    <Product>Thought Haven AspNetCore Tracking</Product>
+    <Copyright>© Thought Haven. All rights reserved.</Copyright>
+    <Description>Manage user tracking consent, such as GDPR.</Description>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+</Project>

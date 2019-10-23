@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Version>0.200.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Thought Haven, Brendan Ridenour</Authors>
+    <Company>Thought Haven</Company>
+    <Product>Thought Haven AspNetCore Mvc</Product>
+    <Copyright>© Thought Haven. All rights reserved.</Copyright>
+    <Description>A slightly more opinionated approach to AspNetCore MVC with more secure defaults and common best practices.</Description>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ThoughtHaven.Core" Version="0.200.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThoughtHaven.AspNetCore.Abstractions\ThoughtHaven.AspNetCore.Abstractions.csproj" />
+    <ProjectReference Include="..\ThoughtHaven.AspNetCore.Tracking\ThoughtHaven.AspNetCore.Tracking.csproj" />
+  </ItemGroup>
+
+</Project>
