@@ -1,86 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91EE1F91-FF63-4185-A2B9-77F347C1D6A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{569DC6A2-0A89-4687-A615-BDB374932EAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Mvc", "src\ThoughtHaven.AspNetCore.Mvc\ThoughtHaven.AspNetCore.Mvc.csproj", "{DA525DDD-83E8-4F93-B6BA-765D0B8C78CB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Mvc.Test", "test\ThoughtHaven.AspNetCore.Mvc.Test\ThoughtHaven.AspNetCore.Mvc.Test.csproj", "{D26ED9C1-7C8C-4CF5-AB4C-40DD4BF90E1E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Mvc.UI", "src\ThoughtHaven.AspNetCore.Mvc.UI\ThoughtHaven.AspNetCore.Mvc.UI.csproj", "{8829E05F-DAE6-4CEB-A619-27C1A804C7AC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Mvc.UI.Test", "test\ThoughtHaven.AspNetCore.Mvc.UI.Test\ThoughtHaven.AspNetCore.Mvc.UI.Test.csproj", "{F1A57F46-C7A3-4732-8240-56E4BE185A4C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Mvc.UI.Test.EmbeddedFiles", "test\ThoughtHaven.AspNetCore.Mvc.UI.Test.EmbeddedFiles\ThoughtHaven.AspNetCore.Mvc.UI.Test.EmbeddedFiles.csproj", "{E6642E01-7C9B-40E7-A898-E36E73E5EB6D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Abstractions", "src\ThoughtHaven.AspNetCore.Abstractions\ThoughtHaven.AspNetCore.Abstractions.csproj", "{6BC609F8-F874-4859-A6DA-1E0D0559DDA1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThoughtHaven.AspNetCore.Abstractions.Test", "test\ThoughtHaven.AspNetCore.Abstractions.Test\ThoughtHaven.AspNetCore.Abstractions.Test.csproj", "{4E9C55C6-085E-425F-8FBE-4A56EFFFDD11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.AspNetCore.Tracking", "src\ThoughtHaven.AspNetCore.Tracking\ThoughtHaven.AspNetCore.Tracking.csproj", "{99AF062A-2884-447B-BEB1-8AF0325C2357}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThoughtHaven.AspNetCore.Tracking.Test", "test\ThoughtHaven.AspNetCore.Tracking.Test\ThoughtHaven.AspNetCore.Tracking.Test.csproj", "{9650FA91-9FC3-439F-B9CA-57488506270F}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA525DDD-83E8-4F93-B6BA-765D0B8C78CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA525DDD-83E8-4F93-B6BA-765D0B8C78CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA525DDD-83E8-4F93-B6BA-765D0B8C78CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA525DDD-83E8-4F93-B6BA-765D0B8C78CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D26ED9C1-7C8C-4CF5-AB4C-40DD4BF90E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D26ED9C1-7C8C-4CF5-AB4C-40DD4BF90E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D26ED9C1-7C8C-4CF5-AB4C-40DD4BF90E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D26ED9C1-7C8C-4CF5-AB4C-40DD4BF90E1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8829E05F-DAE6-4CEB-A619-27C1A804C7AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8829E05F-DAE6-4CEB-A619-27C1A804C7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8829E05F-DAE6-4CEB-A619-27C1A804C7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8829E05F-DAE6-4CEB-A619-27C1A804C7AC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1A57F46-C7A3-4732-8240-56E4BE185A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1A57F46-C7A3-4732-8240-56E4BE185A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1A57F46-C7A3-4732-8240-56E4BE185A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1A57F46-C7A3-4732-8240-56E4BE185A4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6642E01-7C9B-40E7-A898-E36E73E5EB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6642E01-7C9B-40E7-A898-E36E73E5EB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6642E01-7C9B-40E7-A898-E36E73E5EB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6642E01-7C9B-40E7-A898-E36E73E5EB6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BC609F8-F874-4859-A6DA-1E0D0559DDA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BC609F8-F874-4859-A6DA-1E0D0559DDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BC609F8-F874-4859-A6DA-1E0D0559DDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BC609F8-F874-4859-A6DA-1E0D0559DDA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E9C55C6-085E-425F-8FBE-4A56EFFFDD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E9C55C6-085E-425F-8FBE-4A56EFFFDD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E9C55C6-085E-425F-8FBE-4A56EFFFDD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E9C55C6-085E-425F-8FBE-4A56EFFFDD11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99AF062A-2884-447B-BEB1-8AF0325C2357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99AF062A-2884-447B-BEB1-8AF0325C2357}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99AF062A-2884-447B-BEB1-8AF0325C2357}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99AF062A-2884-447B-BEB1-8AF0325C2357}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9650FA91-9FC3-439F-B9CA-57488506270F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9650FA91-9FC3-439F-B9CA-57488506270F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9650FA91-9FC3-439F-B9CA-57488506270F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9650FA91-9FC3-439F-B9CA-57488506270F}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{DA525DDD-83E8-4F93-B6BA-765D0B8C78CB} = {91EE1F91-FF63-4185-A2B9-77F347C1D6A3}
-		{D26ED9C1-7C8C-4CF5-AB4C-40DD4BF90E1E} = {569DC6A2-0A89-4687-A615-BDB374932EAE}
-		{8829E05F-DAE6-4CEB-A619-27C1A804C7AC} = {91EE1F91-FF63-4185-A2B9-77F347C1D6A3}
-		{F1A57F46-C7A3-4732-8240-56E4BE185A4C} = {569DC6A2-0A89-4687-A615-BDB374932EAE}
-		{E6642E01-7C9B-40E7-A898-E36E73E5EB6D} = {569DC6A2-0A89-4687-A615-BDB374932EAE}
-		{6BC609F8-F874-4859-A6DA-1E0D0559DDA1} = {91EE1F91-FF63-4185-A2B9-77F347C1D6A3}
-		{4E9C55C6-085E-425F-8FBE-4A56EFFFDD11} = {569DC6A2-0A89-4687-A615-BDB374932EAE}
-		{99AF062A-2884-447B-BEB1-8AF0325C2357} = {91EE1F91-FF63-4185-A2B9-77F347C1D6A3}
-		{9650FA91-9FC3-439F-B9CA-57488506270F} = {569DC6A2-0A89-4687-A615-BDB374932EAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F046AC24-6C9D-4BF4-8ADE-1CE73A8E5808}
