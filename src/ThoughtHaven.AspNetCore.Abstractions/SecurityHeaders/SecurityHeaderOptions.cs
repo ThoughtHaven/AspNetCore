@@ -2,7 +2,7 @@
 {
     public class SecurityHeaderOptions
     {
-        public string? ContentSecurityPolicy { get; set; } = "default-src 'self'";
+        public string? ContentSecurityPolicy { get; set; } = "default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://stackpath.bootstrapcdn.com; img-src 'self' data:";
         public string? XxsProtection { get; set; } = "1; mode=block";
         public string? XFrameOptions { get; set; } = "SAMEORIGIN";
         public string? XContentTypeOptions { get; set; } = "nosniff";
