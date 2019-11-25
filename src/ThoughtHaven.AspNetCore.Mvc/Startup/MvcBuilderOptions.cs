@@ -1,4 +1,5 @@
 ﻿using ThoughtHaven;
+using ThoughtHaven.AspNetCore.SecurityHeaders;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -17,6 +18,8 @@ namespace Microsoft.AspNetCore.Builder
             set => this._statusCodePagePathFormat = Guard.NullOrWhiteSpace(nameof(value),
                 value);
         }
+
+        public SecurityHeaderOptions SecurityHeaders { get; } = new SecurityHeaderOptions();
 
         public RewriteOptions Rewrite { get; } = new RewriteOptions();
 

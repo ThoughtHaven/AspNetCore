@@ -83,6 +83,14 @@ namespace Microsoft.AspNetCore.Builder
                 }
 
                 [Fact]
+                public void WhenCalled_SetsSecurityHeaders()
+                {
+                    var options = Options();
+
+                    Assert.NotNull(options.SecurityHeaders);
+                }
+
+                [Fact]
                 public void WhenCalled_SetsRewrite()
                 {
                     var options = Options();

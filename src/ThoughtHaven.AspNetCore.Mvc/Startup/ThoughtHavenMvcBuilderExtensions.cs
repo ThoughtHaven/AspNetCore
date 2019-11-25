@@ -40,7 +40,6 @@ namespace Microsoft.AspNetCore.Builder
             else
             {
                 app.UseExceptionHandler(options.ExceptionHandler);
-                app.UseHsts();
             }
 
             if (!string.IsNullOrWhiteSpace(options.Rewrite.IISUrlRewriteFilePath))
@@ -54,6 +53,7 @@ namespace Microsoft.AspNetCore.Builder
             }
 
             app.UseHttpsRedirection();
+            app.UseSecurityHeaders(options.SecurityHeaders);
             app.UseStatusCodePagesWithReExecute(options.StatusCodePagePathFormat);
             app.UseStaticFiles();
 
