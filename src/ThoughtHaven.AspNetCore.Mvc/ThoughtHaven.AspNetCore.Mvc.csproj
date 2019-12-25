@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>0.202.0</Version>
+    <Version>0.500.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Core" Version="0.200.0" />
+    <PackageReference Include="ThoughtHaven.Core" Version="0.500.0" />
   </ItemGroup>
 
   <ItemGroup>
