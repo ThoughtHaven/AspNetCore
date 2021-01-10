@@ -38,8 +38,14 @@ namespace ThoughtHaven.AspNetCore.Tracking
 
         protected ITrackingConsentFeature ConsentFeature(bool required = true)
         {
-            var feature = this.HttpContextAccessor.HttpContext.Features
-                .Get<ITrackingConsentFeature>();
+            var httpContext = this.HttpContextAccessor.HttpContext;
+
+            if (httpContext is null)
+            {
+                throw new InvalidOperationException($"Operation requires an {nameof(HttpContext)} from the {nameof(IHttpContextAccessor)}.");
+            }
+
+            var feature = httpContext!.Features.Get<ITrackingConsentFeature>();
 
             if (required && feature == null)
             {

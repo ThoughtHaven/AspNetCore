@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             if (services == null) { throw new ArgumentNullException(nameof(services)); }
 
-            options = options ?? new TrackingConsentOptions();
+            options ??= new TrackingConsentOptions();
 
             services.AddAntiforgery(antiforgery =>
             {

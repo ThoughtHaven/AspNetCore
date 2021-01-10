@@ -21,11 +21,11 @@ namespace ThoughtHaven.AspNetCore.Http
             var queryIndex = path.IndexOf("?");
             if (queryIndex != -1)
             {
-                var pathQueryString = path.Substring(startIndex: queryIndex);
+                var pathQueryString = path[queryIndex..];
                 path = path.Substring(0, length: queryIndex);
 
                 var fullQuery = query.HasValue
-                    ? $"{pathQueryString}{query.Value.Replace("?", "&")}"
+                    ? $"{pathQueryString}{query.Value!.Replace("?", "&")}"
                     : pathQueryString;
 
                 query = new QueryString(fullQuery);

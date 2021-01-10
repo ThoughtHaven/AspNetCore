@@ -45,7 +45,7 @@ namespace Microsoft.AspNetCore.Builder
                 var key = kvp.Key;
                 var value = kvp.Value;
 
-                location = location.Replace($"{{{key}}}", value.ToString());
+                location = location.Replace($"{{{key}}}", value!.ToString());
             }
 
             return location;

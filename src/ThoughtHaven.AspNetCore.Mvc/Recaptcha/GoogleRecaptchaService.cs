@@ -16,23 +16,23 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
             this.Options = Guard.Null(nameof(options), options);
         }
 
-        public virtual Task<Result<UserMessage>> VerifyV2Checkbox(
+        public virtual Task<Result<UiMessage>> VerifyV2Checkbox(
             GoogleRecaptchaVerifyModel model) =>
             this.VerifyV2Checkbox(model?.ResponseToken!);
 
-        public virtual Task<Result<UserMessage>> VerifyV2Checkbox(string responseToken) =>
+        public virtual Task<Result<UiMessage>> VerifyV2Checkbox(string responseToken) =>
             VerifyV2Core(this.Options.V2CheckboxKeys, responseToken,
                 ErrorMessages.V2CheckboxFailed);
 
-        public virtual Task<Result<UserMessage>> VerifyV2Invisible(
+        public virtual Task<Result<UiMessage>> VerifyV2Invisible(
             GoogleRecaptchaVerifyModel model) =>
             this.VerifyV2Invisible(model?.ResponseToken!);
 
-        public virtual Task<Result<UserMessage>> VerifyV2Invisible(string responseToken) =>
+        public virtual Task<Result<UiMessage>> VerifyV2Invisible(string responseToken) =>
             VerifyV2Core(this.Options.V2InvisibleKeys, responseToken,
                 ErrorMessages.V2InvisibleFailed);
 
-        private async Task<Result<UserMessage>> VerifyV2Core(GoogleRecaptchaKeys keys,
+        private async Task<Result<UiMessage>> VerifyV2Core(GoogleRecaptchaKeys keys,
             string responseToken, string errorMessage)
         {
             var result = await this.VerifyCore<V2ApiResponseModel>(keys, responseToken,
@@ -41,14 +41,14 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
             if (!result.Success) { return result.Failure; }
 
             return result.Value.Success ?
-                new Result<UserMessage>() :
-                new UserMessage(errorMessage);
+                new Result<UiMessage>() :
+                new UiMessage(errorMessage);
         }
 
-        public virtual Task<Result<GoogleRecaptchaV3Score, UserMessage>> VerifyV3(
+        public virtual Task<Result<GoogleRecaptchaV3Score, UiMessage>> VerifyV3(
             GoogleRecaptchaVerifyModel model) => this.VerifyV3(model?.ResponseToken!);
 
-        public virtual async Task<Result<GoogleRecaptchaV3Score, UserMessage>> VerifyV3(
+        public virtual async Task<Result<GoogleRecaptchaV3Score, UiMessage>> VerifyV3(
             string responseToken)
         {
             var result = await VerifyCore<V3ApiResponseModel>(this.Options.V3Keys, responseToken,
@@ -60,12 +60,12 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
             }
 
             return result.Value.Success ?
-                new Result<GoogleRecaptchaV3Score, UserMessage>(
+                new Result<GoogleRecaptchaV3Score, UiMessage>(
                     new GoogleRecaptchaV3Score(result.Value.Score)) :
-                new UserMessage(ErrorMessages.V3Failed);
+                new UiMessage(ErrorMessages.V3Failed);
         }
 
-        private async Task<Result<TResponse, UserMessage>> VerifyCore<TResponse>(
+        private async Task<Result<TResponse, UiMessage>> VerifyCore<TResponse>(
             GoogleRecaptchaKeys keys, string responseToken, string errorMessage)
             where TResponse : V2ApiResponseModel
         {
@@ -73,7 +73,7 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
 
             if (string.IsNullOrWhiteSpace(responseToken))
             {
-                return new UserMessage(errorMessage);
+                return new UiMessage(errorMessage);
             }
 
             var form = new Dictionary<string, string>()
@@ -84,17 +84,17 @@ namespace ThoughtHaven.AspNetCore.Mvc.Recaptcha
 
             var response = await this.HttpClient.PostAsync(
                 "https://www.google.com/recaptcha/api/siteverify",
-                new FormUrlEncodedContent(form)).ConfigureAwait(false);
+                new FormUrlEncodedContent(form!)).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {
-                return new UserMessage(errorMessage);
+                return new UiMessage(errorMessage);
             }
 
             using var json = await response.Content.ReadAsStreamAsync()
                 .ConfigureAwait(false);
             
-            return await JsonSerializer.DeserializeAsync<TResponse>(json);
+            return (await JsonSerializer.DeserializeAsync<TResponse>(json))!;
         }
 
         protected class V2ApiResponseModel

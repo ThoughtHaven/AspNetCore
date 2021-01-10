@@ -5,7 +5,7 @@ namespace ThoughtHaven.AspNetCore.Tracking.Fakes
 {
     public class FakeHttpContextAccessor : IHttpContextAccessor
     {
-        public HttpContext HttpContext { get; set; }
+        public HttpContext? HttpContext { get; set; }
 
         public FakeHttpContextAccessor(FakeTrackingConsentFeature? trackingFeature = null)
         {

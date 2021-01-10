@@ -1,16 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ThoughtHaven.AspNetCore</RootNamespace>
-    <Version>0.700.0</Version>
+    <Version>0.1000.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Thought Haven, Brendan Ridenour</Authors>
     <Company>Thought Haven</Company>
     <Description>Core abstractions and helpers for all AspNetCore applications.</Description>
     <Copyright>© Thought Haven. All rights reserved.</Copyright>
     <Product>Thought Haven AspNetCore Abstractions</Product>
-    <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</WarningsAsErrors>
   </PropertyGroup>
@@ -20,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ThoughtHaven.Guards" Version="0.700.0" />
+    <PackageReference Include="ThoughtHaven.Guards" Version="0.1000.0" />
   </ItemGroup>
 
 </Project>

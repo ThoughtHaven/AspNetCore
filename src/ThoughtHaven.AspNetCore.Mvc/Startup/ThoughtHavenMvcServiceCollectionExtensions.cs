@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ThoughtHaven;
@@ -26,7 +25,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.PostConfigure(options.StaticFiles);
 
             var mvc = services.AddControllersWithViews(options.Mvc)
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(options.Json)
                 .AddRazorOptions(options.Razor)
                 .AddViewOptions(options.Views);

@@ -149,7 +149,7 @@ namespace Microsoft.AspNetCore.Builder
 
             return new ApplicationBuilder(services.BuildServiceProvider());
         }
-        private static RedirectRoute[] Redirects() => new RedirectRoute[0];
+        private static RedirectRoute[] Redirects() => Array.Empty<RedirectRoute>();
         private static RedirectRoute Redirect(bool permanent = false) =>
             new RedirectRoute("/template", "/location", permanent);
         private static RouteData RouteData() => new RouteData();

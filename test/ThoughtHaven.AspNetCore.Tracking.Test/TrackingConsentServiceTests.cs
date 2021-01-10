@@ -37,6 +37,23 @@ namespace ThoughtHaven.AspNetCore.Tracking
             public class EmptyOverload
             {
                 [Fact]
+                public async Task HttpContextIsNull_Throws()
+                {
+                    var accessor = HttpContextAccessor();
+                    accessor.HttpContext = null;
+
+                    var service = new TrackingConsentService(accessor);
+
+                    var exception = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+                    {
+                        await service.CanTrack();
+                    });
+
+                    Assert.Equal("Operation requires an HttpContext from the IHttpContextAccessor.",
+                        exception.Message);
+                }
+
+                [Fact]
                 public async Task HttpContextHasNoITrackingConsentFeature_ReturnsFalse()
                 {
                     var service = new TrackingConsentService(HttpContextAccessor(
@@ -74,6 +91,23 @@ namespace ThoughtHaven.AspNetCore.Tracking
             public class EmptyOverload
             {
                 [Fact]
+                public async Task HttpContextIsNull_Throws()
+                {
+                    var accessor = HttpContextAccessor();
+                    accessor.HttpContext = null;
+
+                    var service = new TrackingConsentService(accessor);
+
+                    var exception = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+                    {
+                        await service.GrantConsent();
+                    });
+
+                    Assert.Equal("Operation requires an HttpContext from the IHttpContextAccessor.",
+                        exception.Message);
+                }
+
+                [Fact]
                 public async Task HttpContextHasNoTrackingConsentFeature_Throws()
                 {
                     var exception = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
@@ -102,6 +136,23 @@ namespace ThoughtHaven.AspNetCore.Tracking
         {
             public class EmptyOverload
             {
+                [Fact]
+                public async Task HttpContextIsNull_Throws()
+                {
+                    var accessor = HttpContextAccessor();
+                    accessor.HttpContext = null;
+
+                    var service = new TrackingConsentService(accessor);
+
+                    var exception = await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+                    {
+                        await service.WithdrawConsent();
+                    });
+
+                    Assert.Equal("Operation requires an HttpContext from the IHttpContextAccessor.",
+                        exception.Message);
+                }
+
                 [Fact]
                 public async Task HttpContextHasNoTrackingConsentFeature_Throws()
                 {

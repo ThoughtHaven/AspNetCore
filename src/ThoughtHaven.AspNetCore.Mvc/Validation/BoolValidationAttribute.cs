@@ -9,7 +9,7 @@
             this.RequiredValue = requiredValue;
         }
 
-        public override bool IsValid(object value) =>
-            value is bool && (bool)value == this.RequiredValue;
+        public override bool IsValid(object? value) =>
+            value is bool result && result == this.RequiredValue;
     }
 }
