@@ -11,7 +11,7 @@ namespace ThoughtHaven.AspNetCore.SecurityHeaders
             {
                 var options = Options();
 
-                Assert.Equal("default-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com https://stackpath.bootstrapcdn.com; font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com",
+                Assert.Equal("default-src 'self'; img-src 'self' data:; script-src 'self' https://js.stripe.com/v3/; style-src 'self' https://fonts.googleapis.com https://stackpath.bootstrapcdn.com; font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com",
                     options.ContentSecurityPolicy);
             }
 
