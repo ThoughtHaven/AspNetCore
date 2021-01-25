@@ -2,7 +2,7 @@
 {
     public class SecurityHeaderOptions
     {
-        public string? ContentSecurityPolicy { get; set; } = "default-src 'self'; img-src 'self' data:; script-src 'self' https://js.stripe.com; style-src 'self' https://fonts.googleapis.com https://stackpath.bootstrapcdn.com; font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com; frame-src 'self' https://js.stripe.com";
+        public string? ContentSecurityPolicy { get; set; } = new ContentSecurityPolicyBuilder().ToString();
         public string? XxsProtection { get; set; } = "1; mode=block";
         public string? XFrameOptions { get; set; } = "SAMEORIGIN";
         public string? XContentTypeOptions { get; set; } = "nosniff";

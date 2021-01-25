@@ -7,11 +7,11 @@ namespace ThoughtHaven.AspNetCore.SecurityHeaders
         public class ContentSecurityPolicyProperty
         {
             [Fact]
-            public void DefaultValue_Returns()
+            public void DefaultValue_ReturnsContentSecurityPolicyDefault()
             {
                 var options = Options();
 
-                Assert.Equal("default-src 'self'; img-src 'self' data:; script-src 'self' https://js.stripe.com; style-src 'self' https://fonts.googleapis.com https://stackpath.bootstrapcdn.com; font-src 'self' https://fonts.gstatic.com https://stackpath.bootstrapcdn.com; frame-src 'self' https://js.stripe.com",
+                Assert.Equal(new ContentSecurityPolicyBuilder().ToString(),
                     options.ContentSecurityPolicy);
             }
 
