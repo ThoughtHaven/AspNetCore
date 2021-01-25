@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace ThoughtHaven.AspNetCore.SecurityHeaders
 {
@@ -206,6 +207,35 @@ namespace ThoughtHaven.AspNetCore.SecurityHeaders
                 options.FeaturePolicy = "new";
 
                 Assert.Equal("new", options.FeaturePolicy);
+            }
+        }
+
+        public class ConfigureMethod
+        {
+            public class CspOverload
+            {
+                [Fact]
+                public void NullCsp_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("csp", () =>
+                    {
+                        Options().Configure(csp: null!);
+                    });
+                }
+
+                [Fact]
+                public void WhenCalled_SetsContentSecurityPolicy()
+                {
+                    var options = Options();
+                    var csp = new ContentSecurityPolicyBuilder();
+                    csp.Default.Clear();
+                    csp.Object.Clear();
+                    csp.Default.Add("https://example.com");
+
+                    options.Configure(csp);
+
+                    Assert.Equal(csp.ToString(), options.ContentSecurityPolicy);
+                }
             }
         }
 
