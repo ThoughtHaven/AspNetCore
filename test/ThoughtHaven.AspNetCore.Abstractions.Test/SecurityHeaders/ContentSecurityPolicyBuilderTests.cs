@@ -3,7 +3,7 @@ using Xunit;
 
 namespace ThoughtHaven.AspNetCore.SecurityHeaders
 {
-    public class ContentSecurityPolicyBuilderTests
+    public partial class ContentSecurityPolicyBuilderTests
     {
         public class ChildProperty
         {

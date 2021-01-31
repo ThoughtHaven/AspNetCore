@@ -4,31 +4,31 @@ using System.Text;
 
 namespace ThoughtHaven.AspNetCore.SecurityHeaders
 {
-    public class ContentSecurityPolicyBuilder
+    public partial class ContentSecurityPolicyBuilder
     {
-        public IList<string> Child { get; } = new List<string>();
-        public IList<string> Connect { get; } = new List<string>();
-        public IList<string> Default { get; } = new List<string>()
+        public List Child { get; } = new List();
+        public List Connect { get; } = new List();
+        public List Default { get; } = new List()
         {
             "'self'",
         };
-        public IList<string> Font { get; } = new List<string>();
-        public IList<string> Frame { get; } = new List<string>();
-        public IList<string> Image { get; } = new List<string>();
-        public IList<string> Manifest { get; } = new List<string>();
-        public IList<string> Media { get; } = new List<string>();
-        public IList<string> Object { get; } = new List<string>()
+        public List Font { get; } = new List();
+        public List Frame { get; } = new List();
+        public ImageList Image { get; } = new ImageList();
+        public List Manifest { get; } = new List();
+        public List Media { get; } = new List();
+        public List Object { get; } = new List()
         {
             "'none'",
         };
-        public IList<string> Prefetch { get; } = new List<string>();
-        public IList<string> Script { get; } = new List<string>();
-        public IList<string> ScriptElem { get; } = new List<string>();
-        public IList<string> ScriptAttr { get; } = new List<string>();
-        public IList<string> Style { get; } = new List<string>();
-        public IList<string> StyleElem { get; } = new List<string>();
-        public IList<string> StyleAttr { get; } = new List<string>();
-        public IList<string> Worker { get; } = new List<string>();
+        public List Prefetch { get; } = new List();
+        public List Script { get; } = new List();
+        public List ScriptElem { get; } = new List();
+        public List ScriptAttr { get; } = new List();
+        public List Style { get; } = new List();
+        public List StyleElem { get; } = new List();
+        public List StyleAttr { get; } = new List();
+        public List Worker { get; } = new List();
 
         public override string ToString()
         {

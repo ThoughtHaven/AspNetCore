@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using ThoughtHaven;
+using ThoughtHaven.AspNetCore.SecurityHeaders;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -19,6 +20,22 @@ namespace Microsoft.AspNetCore.Builder
             Guard.NullOrWhiteSpace(nameof(iisUrlRewriteFilePath), iisUrlRewriteFilePath);
 
             var options = new MvcBuilderOptions();
+            options.Rewrite.IISUrlRewriteFilePath = iisUrlRewriteFilePath;
+
+            return app.UseThoughtHavenMvc(environment, options, configureRoutes);
+        }
+
+        public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
+            IWebHostEnvironment environment, ContentSecurityPolicyBuilder csp,
+            string iisUrlRewriteFilePath, Action<IEndpointRouteBuilder>? configureRoutes = null)
+        {
+            Guard.Null(nameof(app), app);
+            Guard.Null(nameof(environment), environment);
+            Guard.Null(nameof(csp), csp);
+            Guard.NullOrWhiteSpace(nameof(iisUrlRewriteFilePath), iisUrlRewriteFilePath);
+
+            var options = new MvcBuilderOptions();
+            options.SecurityHeaders.Configure(csp);
             options.Rewrite.IISUrlRewriteFilePath = iisUrlRewriteFilePath;
 
             return app.UseThoughtHavenMvc(environment, options, configureRoutes);
