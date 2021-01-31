@@ -68,6 +68,42 @@ namespace Microsoft.AspNetCore.Builder
                 }
             }
 
+            public class CspOverload
+            {
+                [Fact]
+                public void NullApp_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("app", () =>
+                    {
+                        ((IApplicationBuilder)null!).UseThoughtHavenMvc(
+                            environment: Environment(),
+                            csp: Csp());
+                    });
+                }
+
+                [Fact]
+                public void NullEnvironment_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("environment", () =>
+                    {
+                        App().UseThoughtHavenMvc(
+                            environment: null!,
+                            csp: Csp());
+                    });
+                }
+
+                [Fact]
+                public void NullCsp_Throws()
+                {
+                    Assert.Throws<ArgumentNullException>("csp", () =>
+                    {
+                        App().UseThoughtHavenMvc(
+                            environment: Environment(),
+                            csp: null!);
+                    });
+                }
+            }
+
             public class CspAndIisUrlRewriteFilePathOverload
             {
                 [Fact]

@@ -27,6 +27,20 @@ namespace Microsoft.AspNetCore.Builder
 
         public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
             IWebHostEnvironment environment, ContentSecurityPolicyBuilder csp,
+            Action<IEndpointRouteBuilder>? configureRoutes = null)
+        {
+            Guard.Null(nameof(app), app);
+            Guard.Null(nameof(environment), environment);
+            Guard.Null(nameof(csp), csp);
+
+            var options = new MvcBuilderOptions();
+            options.SecurityHeaders.Configure(csp);
+
+            return app.UseThoughtHavenMvc(environment, options, configureRoutes);
+        }
+
+        public static IApplicationBuilder UseThoughtHavenMvc(this IApplicationBuilder app,
+            IWebHostEnvironment environment, ContentSecurityPolicyBuilder csp,
             string iisUrlRewriteFilePath, Action<IEndpointRouteBuilder>? configureRoutes = null)
         {
             Guard.Null(nameof(app), app);
