@@ -36,7 +36,10 @@ namespace ThoughtHaven.AspNetCore.Tracking
             return Task.CompletedTask;
         }
 
-        protected ITrackingConsentFeature ConsentFeature(bool required = true)
+        protected ITrackingConsentFeature ConsentFeature() =>
+            this.ConsentFeature(required: true)!;
+
+        protected ITrackingConsentFeature? ConsentFeature(bool required)
         {
             var httpContext = this.HttpContextAccessor.HttpContext;
 
